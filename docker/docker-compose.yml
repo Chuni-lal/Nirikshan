@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nirikshan:
+    container_name: nirikshan_app
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../storage:/app/storage
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1

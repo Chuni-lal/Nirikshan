@@ -1,0 +1,4 @@
+filename,manufacturer_present,net_qty_present,mrp_present,mfg_date_present,consumer_care_present,generic_name_present,expected_overall_status
+biscuit_pack_01.jpg,True,True,True,True,True,True,COMPLIANT
+shampoo_bottle_02.jpg,True,True,True,False,False,True,NON-COMPLIANT
+tea_box_03.jpg,True,True,False,True,True,True,NON-COMPLIANT
