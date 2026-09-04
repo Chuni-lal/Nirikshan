@@ -682,3 +682,13 @@ Use this checklist to track progress. Every item corresponds to a file in the pr
 4. **Technical Differentiation**: Physical font size verification (not just OCR), court-ready PDF evidence, 100% offline
 5. **Impact**: 30x faster inspections, standardized compliance checking, digital audit trail
 6. **Scalability**: Modular architecture, Docker-ready, extensible rule engine for new regulations
+
+---
+
+## 📜 CONVERSATION HISTORY & AGENT MEMORY LOGS
+
+| Session ID | Date | Key Milestones & Enhancements |
+|---|---|---|
+| [`01c9f0a5-7dd8-496c-bc5e-a76d9d2cabfb`](conversation://01c9f0a5-7dd8-496c-bc5e-a76d9d2cabfb) | 2026-09-04 | Initial OCR upscaling, line reconstruction, and FastAPI setup |
+| [`8163ee2f-088d-44aa-8cde-43c7ecb276a3`](conversation://8163ee2f-088d-44aa-8cde-43c7ecb276a3) | 2026-09-04 | DoCA Official UI, NVIDIA CUDA GPU acceleration, Dot-matrix morphological closing, Proximity line clustering, Structured Key-Value summary grid, Windows/Mac 1-click launchers (`run_windows.bat`), and Sandbox repository creation (`Nirikshan-Sandbox.git`) |
+
