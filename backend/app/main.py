@@ -43,10 +43,12 @@ def authenticate_user(credentials: HTTPBasicCredentials = Depends(security)):
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "..", "..", "web", "static")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "..", "..", "web", "templates")
+ASSETS_DIR = os.path.join(BASE_DIR, "..", "..", "assets")
 
 # Mount directories
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 app.mount("/storage", StaticFiles(directory=STORAGE_DIR), name="storage")
+app.mount("/assets", StaticFiles(directory=ASSETS_DIR), name="assets")
 
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 

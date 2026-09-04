@@ -5,44 +5,52 @@ from app.core.config import DEFAULT_DPI, FONT_SIZE_THRESHOLDS
 def get_image_dpi(image_path: str) -> float:
     """
     Extract DPI from image metadata.
-    Falls back to DEFAULT_DPI if not found.
+    Falls back to DEFAULT_DPI (300.0) if EXIF metadata is missing.
     """
     try:
         with Image.open(image_path) as img:
             dpi = img.info.get('dpi')
-            if dpi is not None:
+            if dpi is not None and dpi[0] > 0:
                 return float(dpi[0])
     except Exception:
         pass
     return float(DEFAULT_DPI)
 
-def calculate_font_size_mm(bbox_height_px: float, dpi: float) -> float:
+def calculate_font_size_mm(bbox_height_px: float, dpi: float, reference_ratio: float = 1.0) -> float:
     """
-    Calculate font size in millimeters based on pixel height and DPI.
-    Formula: (bbox_height_px / dpi) * 25.4
+    Calculate physical font height in millimeters based on bounding box pixel height and DPI.
+    Formula: (bbox_height_px / dpi) * 25.4 * reference_ratio
+    Rule 6(1) requires measuring upper-case letter height.
     """
-    return round((bbox_height_px / dpi) * 25.4, 2)
+    height_mm = (bbox_height_px / dpi) * 25.4 * reference_ratio
+    return round(height_mm, 2)
 
 def get_bbox_height(bbox: List[List[float]]) -> float:
     """
-    Calculate pixel height from a 4-corner bounding box.
+    Calculate precise pixel height from a 4-corner bounding box.
     """
     top_left = bbox[0]
     bottom_left = bbox[3]
-    return abs(float(bottom_left[1]) - float(top_left[1]))
+    top_right = bbox[1]
+    bottom_right = bbox[2]
+    
+    left_height = abs(float(bottom_left[1]) - float(top_left[1]))
+    right_height = abs(float(bottom_right[1]) - float(top_right[1]))
+    return max(left_height, right_height)
 
-def analyze_font_sizes(ocr_results: List[Dict[str, Any]], image_path: str) -> List[Dict[str, Any]]:
+def analyze_font_sizes(ocr_results: List[Dict[str, Any]], image_path: str, custom_dpi: float = None) -> List[Dict[str, Any]]:
     """
-    Analyze font sizes for all OCR results and check compliance against generic declaration threshold.
+    Analyze font heights for extracted OCR text blocks against PCR 2011 Rule 6(1) thresholds.
     """
-    dpi = get_image_dpi(image_path)
-    min_required_mm = float(FONT_SIZE_THRESHOLDS['generic_declaration'])
+    dpi = custom_dpi if custom_dpi else get_image_dpi(image_path)
+    min_required_mm = float(FONT_SIZE_THRESHOLDS.get('generic_declaration', 1.0))
     
     analysis = []
     for result in ocr_results:
         bbox = result['bbox']
         text = result['text']
         bbox_height_px = get_bbox_height(bbox)
+        
         font_size_mm = calculate_font_size_mm(bbox_height_px, dpi)
         is_compliant = font_size_mm >= min_required_mm
         

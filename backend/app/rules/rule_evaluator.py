@@ -1,5 +1,5 @@
 from typing import List, Dict, Any
-from .legal_clauses import get_all_rules, match_rule
+from .legal_clauses import get_all_rules, match_rule, parse_structured_declarations
 
 def evaluate_compliance(ocr_results: List[Dict[str, Any]], font_analysis: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
@@ -10,7 +10,7 @@ def evaluate_compliance(ocr_results: List[Dict[str, Any]], font_analysis: List[D
         font_analysis (list): Output from font analyzer containing font sizes and compliance.
         
     Returns:
-        dict: Full compliance report.
+        dict: Full compliance report with rule matrix and structured declarations.
     """
     # Phase 1: Rule Presence Check
     extracted_text = " ".join([item.get("text", "") for item in ocr_results])
@@ -39,7 +39,10 @@ def evaluate_compliance(ocr_results: List[Dict[str, Any]], font_analysis: List[D
             
         rule_results.append(result)
         
-    # Phase 2: Font Size Check
+    # Phase 2: Structured Declarations Extraction (MRP, Net Qty, Dates, Mfr)
+    structured_declarations = parse_structured_declarations(extracted_text)
+
+    # Phase 3: Font Size Check
     font_violations = []
     font_compliant_count = 0
     font_non_compliant_count = 0
@@ -65,6 +68,7 @@ def evaluate_compliance(ocr_results: List[Dict[str, Any]], font_analysis: List[D
         "rules_passed": rules_passed,
         "rules_failed": rules_failed,
         "rule_results": rule_results,
+        "structured_declarations": structured_declarations,
         "violations": violations,
         "font_violations": font_violations,
         "extracted_text": extracted_text,

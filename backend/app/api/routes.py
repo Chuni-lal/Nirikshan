@@ -119,3 +119,22 @@ async def export_csv():
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"CSV export failed: {str(e)}")
+
+
+@router.get("/download-pdf/{scan_id}")
+async def download_pdf(scan_id: str):
+    """Download PDF notice for a specific scan ID."""
+    try:
+        pdf_path = os.path.join(REPORTS_DIR, f"{scan_id}_report.pdf")
+        if not os.path.exists(pdf_path):
+            raise HTTPException(status_code=404, detail="Inspection PDF notice not found.")
+        return FileResponse(
+            path=pdf_path,
+            filename=f"Nirikshan_Notice_{scan_id}.pdf",
+            media_type="application/pdf"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
+

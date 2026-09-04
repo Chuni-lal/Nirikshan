@@ -8,8 +8,9 @@ EVIDENCE_DIR = os.path.join(STORAGE_DIR, "evidence")
 REPORTS_DIR = os.path.join(STORAGE_DIR, "generated_reports")
 DATABASE_PATH = os.path.join(STORAGE_DIR, "nirikshan.db")
 
-OCR_LANGUAGES = ["en", "hi"]
-OCR_GPU = False
+# Primary language for Legal Metrology statutory text and numerals
+OCR_LANGUAGES = ["en"]
+OCR_GPU = True
 DEFAULT_DPI = 300
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 
