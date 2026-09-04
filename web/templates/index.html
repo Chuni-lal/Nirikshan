@@ -2,533 +2,816 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nirīkshan (निरीक्षण) — Checking Compliance of Packaged Commodities</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Department of Consumer Affairs (DoCA) — Nirīkshan Compliance Directory</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/Logo.png">
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-<body class="font-sans antialiased bg-[#F8FAFC] text-[#1E293B]">
+<body class="font-sans antialiased bg-white text-[#1E293B] overflow-x-hidden max-w-full">
 
     <!-- ==========================================================================
-         1. GLOBAL MULTI-TIER HEADER (Clean, Professional, Highly Responsive)
+         1. TOP ACCESSIBILITY UTILITY BAR (* SIH26034 Faded Top-Right Watermark)
          ========================================================================== -->
-    
-    <!-- Tier 1: Topmost Accessibility Bar (Solid Dark Slate #0F172A) -->
-    <header class="top-utility-bar px-4 py-1.5 text-xs font-semibold no-print bg-[#0F172A] text-white">
+    <header class="top-utility-bar px-3 sm:px-4 py-1.5 text-xs font-semibold no-print bg-[#0B1727] text-white">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-            <div class="flex items-center gap-3 text-gray-200">
-                <span class="tracking-wide font-bold text-[#FFD700]">भारत सरकार</span>
-                <span class="text-gray-400">|</span>
-                <span class="tracking-wide">GOVERNMENT OF INDIA</span>
-                <span class="hidden md:inline border-l border-gray-700 h-3"></span>
-                <span class="hidden md:inline text-gray-300">उपभोक्ता मामले विभाग • Department of Consumer Affairs</span>
+            <div class="flex items-center gap-2 text-gray-200">
+                <a href="#main-content" class="hover:underline font-bold text-gray-100 text-xs">SKIP TO MAIN CONTENT</a>
             </div>
-            <div class="flex items-center gap-3">
-                <!-- Text Size Controls -->
-                <div class="flex items-center bg-gray-900 rounded border border-gray-700 px-1">
-                    <button onclick="setFontSize('sm')" class="px-1.5 py-0.5 hover:text-[#FFD700]" title="Decrease Text Size">A-</button>
-                    <button onclick="setFontSize('md')" class="px-1.5 py-0.5 hover:text-[#FFD700]" title="Reset Text Size">A</button>
-                    <button onclick="setFontSize('lg')" class="px-1.5 py-0.5 hover:text-[#FFD700]" title="Increase Text Size">A+</button>
-                </div>
-                <!-- High Contrast Toggle -->
-                <button onclick="toggleHighContrast()" class="flex items-center gap-1 bg-gray-900 border border-gray-700 px-2 py-0.5 rounded hover:text-[#FFD700]" title="Toggle High Contrast">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18a9 9 0 000 18M12 3a9 9 0 010 18"/></svg>
-                    <span class="hidden sm:inline">High Contrast</span>
+            <div class="flex items-center gap-2.5 sm:gap-3.5">
+                <!-- Sitemap Button -->
+                <button onclick="openSitemapModal()" class="hover:text-[#1C64F2] flex items-center gap-1" title="View Sitemap">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <span class="hidden xs:inline">Sitemap</span>
                 </button>
+                <!-- Text Size Controls -->
+                <div class="flex items-center bg-gray-800 rounded border border-gray-700 px-1">
+                    <button onclick="setFontSize('lg')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Increase Text Size">A+</button>
+                    <button onclick="setFontSize('md')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Reset Text Size">A</button>
+                    <button onclick="setFontSize('sm')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Decrease Text Size">A-</button>
+                </div>
+                <!-- High Contrast Boxes -->
+                <div class="flex items-center gap-1">
+                    <button onclick="toggleHighContrast()" class="w-4 h-4 bg-black border border-white rounded-sm text-[9px] font-bold flex items-center justify-center text-white" title="Black Contrast">A</button>
+                    <button onclick="toggleHighContrast()" class="w-4 h-4 bg-[#006699] border border-white rounded-sm text-[9px] font-bold flex items-center justify-center text-white" title="Blue Contrast">A</button>
+                </div>
                 <!-- Language Toggle -->
-                <button id="lang-btn" onclick="toggleLanguage()" class="bg-[#1A365D] border border-blue-400 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-900 text-[11px]">
+                <button id="lang-btn" onclick="toggleLanguage()" class="bg-[#006699] border border-blue-400 text-white px-2 py-0.5 rounded font-bold text-[11px] hover:bg-blue-800">
                     English / हिन्दी
                 </button>
+                <!-- Top Right Faded Watermark with Asterisk -->
+                <span class="sih-watermark-topright border-l border-gray-700 pl-2.5" title="SIH26034 Official Prototype">* SIH26034</span>
             </div>
         </div>
     </header>
 
-    <!-- Tier 2: Main Institutional Header (Clean White Bar) -->
-    <div class="bg-white border-b-2 border-gray-200 py-3.5 px-4 md:px-8 shadow-sm no-print">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+    <!-- ==========================================================================
+         2. MAIN INSTITUTIONAL HEADER (DoCA & NIRĪKSHAN Logos - No Emblem)
+         ========================================================================== -->
+    <div class="bg-white border-b border-gray-200 py-3.5 px-3 md:px-8 no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
             
-            <!-- LEFT: Official Department of Consumer Affairs & State Emblem -->
-            <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
-                <a href="https://doca.gov.in" target="_blank" rel="noopener noreferrer" 
-                   class="flex items-center gap-3 group" title="Visit Official Department of Consumer Affairs Portal (doca.gov.in)">
+            <!-- LEFT: DoCA Logo + NIRĪKSHAN Logo (Emblem Removed) -->
+            <div class="flex items-center gap-2.5 sm:gap-3.5 max-w-full">
+                <a href="/" class="flex items-center gap-2.5 sm:gap-3 group max-w-full">
                     <img src="/assets/Logo.png" alt="Department of Consumer Affairs Official Seal" 
-                         class="h-12 sm:h-14 md:h-16 w-auto animated-top-logo flex-shrink-0 transition transform group-hover:scale-105" />
-                    <div class="h-10 border-l-2 border-gray-300"></div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="State Emblem of India" 
-                         class="h-10 sm:h-12 w-auto flex-shrink-0" />
+                         class="h-11 sm:h-13 w-auto flex-shrink-0 transition transform group-hover:scale-105" />
+                    
+                    <div class="h-9 sm:h-10 border-l border-gray-300 flex-shrink-0"></div>
+                    
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-2xl sm:text-3xl font-black text-[#006699] tracking-wider leading-none">NIRĪKSHAN</span>
+                            <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-1.5 py-0.5 rounded border border-gray-300">* SIH26034</span>
+                        </div>
+                        <div class="text-xs sm:text-sm font-bold text-gray-800 leading-tight mt-0.5 truncate">
+                            Packaged Commodity Compliance Auditor
+                        </div>
+                        <div class="text-[11px] text-gray-600 font-semibold italic leading-tight truncate">
+                            Department of Consumer Affairs (DoCA)
+                        </div>
+                    </div>
                 </a>
-                <div class="text-left leading-tight hidden sm:block">
-                    <div class="text-xs font-black text-[#1A365D] tracking-wider uppercase">उपभोक्ता मामले विभाग</div>
-                    <div class="text-[11px] font-bold text-gray-800">Department of Consumer Affairs</div>
-                    <div class="text-[10px] text-gray-500 font-semibold">Government of India</div>
-                </div>
             </div>
 
-            <!-- RIGHT: NIRIKSHAN Core Application Identity -->
-            <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
-                <!-- Animated SVG Emblem -->
-                <div class="relative p-1 bg-gradient-to-tr from-[#1A365D] via-[#FFD700] to-[#E65100] rounded-full shadow-md ring-2 ring-yellow-400/30 flex-shrink-0">
-                    <svg class="h-11 w-11 sm:h-13 sm:w-13 md:h-14 md:w-14 bg-white rounded-full p-1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="46" stroke="#1A365D" stroke-width="5" fill="#FFFFFF" />
-                        <circle cx="50" cy="50" r="40" stroke="#FFD700" stroke-width="2.5" stroke-dasharray="6 3" class="svg-animated-ring" />
-                        <g class="svg-animated-reticle">
-                            <path d="M 20 32 L 20 20 L 32 20" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" />
-                            <path d="M 80 32 L 80 20 L 68 20" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" />
-                            <path d="M 20 68 L 20 80 L 32 80" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" />
-                            <path d="M 80 68 L 80 80 L 68 80" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" />
-                        </g>
-                        <path d="M 50 78 Q 42 62 44 45" stroke="#1E7E34" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                        <path d="M 50 78 Q 58 62 56 45" stroke="#1E7E34" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                        <path d="M 44 48 C 38 44 38 36 44 34 C 48 38 48 44 44 48 Z" fill="#FFD700" stroke="#E65100" stroke-width="1.5" />
-                        <path d="M 56 48 C 62 44 62 36 56 34 C 52 38 52 44 56 48 Z" fill="#FFD700" stroke="#E65100" stroke-width="1.5" />
-                        <path d="M 44 60 C 36 56 36 48 44 46 C 48 50 48 56 44 60 Z" fill="#FF9933" stroke="#E65100" stroke-width="1.5" />
-                        <path d="M 56 60 C 64 56 64 48 56 46 C 52 50 52 56 56 60 Z" fill="#FF9933" stroke="#E65100" stroke-width="1.5" />
-                        <circle cx="50" cy="28" r="5" fill="#FFD700" stroke="#E65100" stroke-width="1.5" />
-                        <path d="M 28 32 L 72 32" stroke="#1A365D" stroke-width="3" stroke-linecap="round" />
-                        <path d="M 28 32 L 20 44 L 36 44 Z" stroke="#1A365D" stroke-width="1.5" fill="#FEF3C7" />
-                        <path d="M 72 32 L 64 44 L 80 44 Z" stroke="#1A365D" stroke-width="1.5" fill="#FEF3C7" />
-                        <circle cx="50" cy="50" r="6" fill="#1A365D" stroke="#FFD700" stroke-width="2" />
-                    </svg>
-                </div>
-                
-                <div class="text-left">
-                    <div class="flex items-center gap-2">
-                        <h1 class="text-2xl sm:text-3xl font-black text-[#1A365D] tracking-widest">NIRĪKSHAN</h1>
-                        <span class="rounded bg-[#1A365D] px-2 py-0.5 text-[10px] font-extrabold text-[#FFD700] border border-[#FFD700]/40 shadow-sm">v1.0</span>
-                    </div>
-                    <div class="text-[11px] font-bold text-[#E65100]">निरीक्षण • Packaged Commodity Auditor</div>
+            <!-- RIGHT: Pill Navigation Container -->
+            <div class="flex items-center flex-shrink-0 max-w-full overflow-x-auto">
+                <div class="nav-pill-container">
+                    <a href="/" class="nav-pill-link active">HOME</a>
+                    <a href="#scanner-workbench" class="nav-pill-link">SCANNER</a>
+                    <a href="/dashboard" class="nav-pill-link">DASHBOARD</a>
+                    <a href="javascript:void(0)" onclick="openHelpModal()" class="nav-pill-link">HELP</a>
+                    <a href="javascript:void(0)" onclick="openAboutModal()" class="nav-pill-link">ABOUT US</a>
+                    <a href="#contact-us" class="nav-pill-link">CONTACT</a>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Tier 3: Primary Navigation Bar (Deep Maroon-Brown #4A2E18) -->
-    <nav class="main-header-nav no-print shadow-md">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-2 sm:px-4">
-            <div class="flex items-center flex-wrap">
-                <a href="/" class="nav-link-item active">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 22V12h6v10"/></svg>
-                    <span>Field Scanner Workbench</span>
-                </a>
-                <a href="/dashboard" class="nav-link-item">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                    <span>Enforcement Dashboard</span>
-                </a>
-                <button onclick="openRulesModal()" class="nav-link-item bg-transparent border-none cursor-pointer hidden sm:inline-flex">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                    <span>Rule Repository (PCR 2011)</span>
-                </button>
-                <a href="#contact-doca-section" class="nav-link-item hidden md:inline-flex">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    <span>Contact DoCA</span>
-                </a>
-            </div>
-            <div class="hidden lg:flex items-center gap-2 py-1 pr-2">
-                <span class="text-xs text-gray-300 font-mono">SIH26034 Prototype</span>
-            </div>
-        </div>
-    </nav>
-
     <!-- ==========================================================================
-         2. HERO BANNER (Faded India Gate Background)
+         3. HERO BANNER SECTION (Uses banner-inner.jpg background)
          ========================================================================== -->
-    <section class="hero-bg-overlay py-8 sm:py-10 px-4 text-white border-b-4 border-[#FFD700]">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="max-w-3xl space-y-3">
-                <div class="inline-flex items-center gap-2 bg-[#E65100] text-white px-3 py-1 rounded text-xs font-extrabold uppercase tracking-wider shadow">
-                    <svg class="w-4 h-4 text-[#FFD700]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                    <span>Department of Consumer Affairs • Legal Metrology Division</span>
-                </div>
-                
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                    Checking Compliance of Packaged Commodities
-                </h2>
-                
-                <p class="text-xs sm:text-sm md:text-base text-gray-200 leading-relaxed font-normal">
-                    Automated enforcement engine designed under the <span class="text-[#FFD700] font-semibold">Legal Metrology Act, 2009</span> and <span class="text-[#FFD700] font-semibold">Legal Metrology (Packaged Commodities) Rules, 2011</span>. Real-time verification of mandatory Principal Display Panel declarations & DPI letter heights in &lt;30 seconds.
-                </p>
+    <section class="hero-banner-igod border-b border-gray-300">
+        <div class="w-full max-w-4xl mx-auto text-center space-y-4 px-2">
+            
+            <!-- Central Search Capsule -->
+            <div class="hero-search-capsule mx-auto">
+                <span class="text-gray-400 text-lg px-2 cursor-pointer" title="Virtual Keyboard">⌨</span>
+                <input type="text" id="hero-search-input" placeholder="Search by Keyword or Product Name (e.g. Amul Butter 500g)..." 
+                       class="hero-search-input">
+                <button type="button" onclick="scrollToWorkbench()" class="hero-search-btn" title="Search / Scan">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </button>
             </div>
 
-            <!-- Statutory Alert Box -->
-            <div class="bg-black/70 border border-yellow-500/50 p-4 rounded-lg max-w-sm text-xs shadow-lg space-y-1">
-                <div class="flex items-center gap-2 text-[#FFD700] font-bold">
-                    <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
-                    <span>Mandatory Declarations Rule 6(1)</span>
-                </div>
-                <p class="text-gray-300 leading-normal">
-                    Requires clear declaration of MRP (incl. of all taxes), Net Quantity, Date of Mfg/Import, Country of Origin, Manufacturer Address & Consumer Care info.
-                </p>
+            <!-- Advanced Search Sublink -->
+            <div class="text-right max-w-2xl mx-auto pr-2">
+                <a href="#scanner-workbench" class="text-xs sm:text-sm font-semibold text-[#006699] hover:underline flex items-center justify-end gap-1">
+                    <span>ⓘ Advanced Search / Package Inspection</span>
+                </a>
             </div>
+
         </div>
     </section>
 
     <!-- ==========================================================================
-         3. DUAL-PANEL WORKBENCH (Field Inspector & Scanner)
+         4. PRIME MINISTER MODI QUOTE CARD (Food & Packaged Commodities Directive)
          ========================================================================== -->
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-            <!-- LEFT PANEL: Upload & Packaging Metadata (5 Cols) -->
-            <div class="lg:col-span-5 space-y-4">
-                <div class="gov-card gov-card-header p-5">
-                    <div class="flex items-center justify-between border-b pb-3 mb-4">
-                        <h3 class="text-lg font-bold text-[#1A365D] flex items-center gap-2">
-                            <svg class="w-5 h-5 text-[#1A365D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h0.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            Field Inspection Workbench
-                        </h3>
-                        <span class="text-xs font-mono bg-blue-100 text-[#1A365D] px-2 py-0.5 rounded font-bold">FORM-LM-01</span>
-                    </div>
-
-                    <form id="scan-form" class="space-y-4">
-                        
-                        <!-- Metadata Inputs -->
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                Product / Commodity Name <span class="text-red-600">*</span>
-                            </label>
-                            <input type="text" id="custom-filename" placeholder="e.g. Amul Butter 500g / Britannia Biscuits" required
-                                   class="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-[#1A365D] focus:outline-none bg-white">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Brand / Packer</label>
-                                <input type="text" id="brand-name" placeholder="e.g. Gujarat Milk Fed."
-                                       class="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-[#1A365D] focus:outline-none bg-white">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Batch / SKU ID</label>
-                                <input type="text" id="sku-id" placeholder="e.g. BATCH-2026-99A"
-                                       class="w-full px-3 py-2 text-sm border border-gray-300 rounded font-mono focus:ring-2 focus:ring-[#1A365D] focus:outline-none bg-white">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Inspector Code</label>
-                            <input type="text" value="INSP-DEL-2026-8841" readonly
-                                   class="w-full px-3 py-2 text-sm border border-gray-200 rounded font-mono bg-gray-100 text-gray-600">
-                        </div>
-
-                        <!-- Dropzone / Image Input -->
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                Package Label Photo <span class="text-red-600">*</span>
-                            </label>
-                            <div id="dropzone-area" class="dropzone-box rounded-lg p-6 text-center space-y-3">
-                                <div class="w-12 h-12 bg-blue-50 text-[#1A365D] rounded-full flex items-center justify-center mx-auto">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-semibold text-gray-800">Drag & Drop package image here</p>
-                                    <p class="text-xs text-gray-500 mt-1">Supports JPG, JPEG, PNG, WEBP (Max 10MB)</p>
-                                </div>
-                                <div class="flex items-center justify-center gap-2 pt-2">
-                                    <button type="button" id="camera-btn" class="px-3.5 py-2 bg-[#1A365D] text-white text-xs font-bold rounded shadow hover:bg-blue-900 flex items-center gap-1.5">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h0.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                        Take Photo
-                                    </button>
-                                    <button type="button" id="gallery-btn" class="px-3.5 py-2 bg-gray-800 text-white text-xs font-bold rounded shadow hover:bg-black flex items-center gap-1.5">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        Browse File
-                                    </button>
-                                </div>
-                                <input type="file" id="camera-input" accept="image/*" capture="environment" hidden>
-                                <input type="file" id="gallery-input" accept=".jpg, .jpeg, .png, .webp" hidden>
-                            </div>
-                        </div>
-
-                        <!-- Image Preview Box -->
-                        <div id="image-preview-container" class="hidden border rounded p-2 bg-gray-50 text-center">
-                            <img id="image-preview" src="" alt="Package Label Preview" class="max-h-56 mx-auto rounded shadow-sm">
-                            <p id="image-name" class="text-xs font-mono text-gray-600 mt-2 truncate"></p>
-                        </div>
-
-                        <!-- Primary Action Button -->
-                        <button type="submit" id="submit-scan-btn"
-                                class="w-full py-3 px-4 bg-[#1A365D] hover:bg-[#0F2444] text-white font-bold text-sm rounded shadow-md flex items-center justify-center gap-2 transition">
-                            <svg class="w-5 h-5 text-[#FFD700]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            <span>Run Statutory Compliance Check</span>
-                        </button>
-                    </form>
-
-                    <!-- Loading Progress Indicator -->
-                    <div id="scan-loader" class="hidden py-6 text-center space-y-3">
-                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-[#1A365D] border-t-transparent"></div>
-                        <div>
-                            <p id="loader-status" class="text-sm font-bold text-[#1A365D]">Applying OpenCV Preprocessing...</p>
-                            <p class="text-xs text-gray-500 mt-1">Executing EasyOCR Tokenization & DPI Font-Height Analysis</p>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                            <div id="loader-bar" class="bg-[#E65100] h-full transition-all duration-300" style="width: 25%"></div>
-                        </div>
-                    </div>
+    <div class="quote-card-wrapper">
+        <div class="quote-card">
+            <img src="/static/assets/pm-modi.png" alt="Prime Minister Narendra Modi" class="quote-avatar">
+            <div class="flex-grow">
+                <p class="quote-text">
+                    <span class="quote-symbol">“</span>Ensuring statutory transparency, accurate net weight, clear MRP, and authentic packaged commodity declarations is essential to safeguarding consumer rights and empowering every Indian household.<span class="quote-symbol">”</span>
+                </p>
+                <div class="quote-attribution">
+                    <div class="font-bold text-[#006699] text-xs sm:text-sm">Directive on Consumer Protection & Packaged Commodities</div>
+                    <div class="text-gray-500 font-medium text-xs">Department of Consumer Affairs • Legal Metrology Division</div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- RIGHT PANEL: Audit Results & Evidentiary Proof (7 Cols) -->
-            <div class="lg:col-span-7 space-y-4">
-                
-                <!-- Initial State Placeholder -->
-                <div id="initial-placeholder" class="gov-card p-8 text-center space-y-4">
-                    <div class="w-16 h-16 bg-blue-50 text-[#1A365D] rounded-full flex items-center justify-center mx-auto">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-[#1A365D]">Enforcement Audit Output</h3>
-                    <p class="text-sm text-gray-600 max-w-md mx-auto">
-                        Upload a package label image on the left panel to execute an automated audit against the 6 mandatory statutory declarations under the <span class="font-semibold text-gray-800">Legal Metrology (Packaged Commodities) Rules, 2011</span>.
-                    </p>
-                    <div class="grid grid-cols-3 gap-2 max-w-sm mx-auto pt-4 text-xs">
-                        <div class="p-2 border rounded bg-gray-50 font-semibold">Rule 6(1)(a) Mfr Name</div>
-                        <div class="p-2 border rounded bg-gray-50 font-semibold">Rule 6(1)(b) Net Qty</div>
-                        <div class="p-2 border rounded bg-gray-50 font-semibold">Rule 6(1)(d) Mfg Date</div>
-                        <div class="p-2 border rounded bg-gray-50 font-semibold">Rule 6(1)(e) MRP</div>
-                        <div class="p-2 border rounded bg-gray-50 font-semibold">Rule 6(1)(f) Origin</div>
-                        <div class="p-2 border rounded bg-gray-50 font-semibold">Rule 6(1)(g) Care</div>
-                    </div>
-                </div>
+    <!-- ==========================================================================
+         5. MAIN CONTENT AREA: BREADCRUMB & DEPARTMENT HEADER
+         ========================================================================== -->
+    <main id="main-content" class="flex-grow max-w-7xl w-full mx-auto px-3 sm:px-6 md:px-8 py-4 space-y-6">
 
-                <!-- Results Output Card (Rendered dynamically) -->
-                <div id="results-panel" class="hidden space-y-4">
-                    
-                    <!-- Verdict Banner -->
-                    <div id="verdict-banner" class="rounded-lg p-4 text-white shadow-md flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div id="verdict-icon" class="p-2 bg-white/20 rounded-full"></div>
-                            <div>
-                                <div class="text-xs uppercase font-extrabold tracking-wider opacity-90">Statutory Audit Verdict</div>
-                                <h3 id="verdict-status" class="text-2xl font-black">COMPLIANT</h3>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <div class="text-xs font-mono opacity-80">Inspection Reference</div>
-                            <div id="inspection-id-badge" class="text-sm font-mono font-bold">#SCAN-0000</div>
-                        </div>
-                    </div>
+        <!-- Breadcrumb -->
+        <nav class="text-xs sm:text-sm text-gray-500 flex flex-wrap items-center gap-1.5">
+            <a href="/" class="hover:text-[#006699]">Home</a>
+            <span>/</span>
+            <span>Union Government</span>
+            <span>/</span>
+            <span>Ministry of Consumer Affairs, Food and Public Distribution (MoCAFP)</span>
+            <span>/</span>
+            <span class="text-[#006699] font-bold">Department of Consumer Affairs (DoCA)</span>
+        </nav>
 
-                    <!-- Main Audit Card -->
-                    <div class="gov-card p-5 space-y-5">
-                        
-                        <!-- Evidence Photo & OCR View -->
-                        <div>
-                            <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 flex items-center justify-between">
-                                <span>Photographic Evidence & Bounding Boxes</span>
-                                <span class="text-[11px] font-mono text-gray-500">Resolution DPI: 300</span>
-                            </h4>
-                            <div class="border rounded bg-black/90 p-2 text-center relative overflow-hidden">
-                                <img id="evidence-image" src="" alt="Evidence Image" class="max-h-72 mx-auto rounded">
-                            </div>
-                        </div>
-
-                        <!-- Key Extracted Declarations Summary Grid -->
-                        <div>
-                            <h4 class="text-xs font-bold text-[#1A365D] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                                <svg class="w-4 h-4 text-[#1A365D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-                                Extracted Key Statutory Values (Normalized Summary)
-                            </h4>
-                            <div id="structured-declarations-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-                                <!-- Populated via JS -->
-                            </div>
-                        </div>
-
-                        <!-- Statutory Audit Matrix (6 Mandatory Clauses) -->
-                        <div>
-                            <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                                Statutory Audit Matrix (Legal Metrology PCR, 2011)
-                            </h4>
-                            <div class="overflow-x-auto">
-                                <table class="gov-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Rule ID</th>
-                                            <th>Statutory Clause</th>
-                                            <th>Extracted Declaration Snippet</th>
-                                            <th>Verdict</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="rules-matrix-tbody">
-                                        <!-- Populated via JS -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- Font Size & Readability Analysis -->
-                        <div>
-                            <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                                Font Size & Physical Height Compliance Analysis (DPI → mm)
-                            </h4>
-                            <div class="border rounded p-3 bg-gray-50 space-y-2">
-                                <div id="font-analysis-list" class="space-y-2 text-xs">
-                                    <!-- Populated via JS -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                            <a id="download-pdf-btn" href="#" target="_blank"
-                               class="flex-1 py-3 px-4 bg-[#1E7E34] hover:bg-green-800 text-white font-bold text-sm rounded shadow text-center flex items-center justify-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                <span>Download Official PDF Inspection Notice</span>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
+        <!-- Main Heading with Blue Underline -->
+        <div class="border-b-2 border-[#006699] pb-3">
+            <h1 class="text-2xl md:text-3xl font-bold text-[#1E293B]">
+                Department of Consumer Affairs (DoCA) — Nirīkshan Compliance Auditor
+            </h1>
+            <p class="text-sm md:text-base text-gray-700 mt-1 font-semibold">
+                Automated compliance checking of packaged commodities under Legal Metrology (Packaged Commodities) Rules, 2011.
+            </p>
         </div>
 
         <!-- ==========================================================================
-             4. LEGAL METROLOGY ACT 2011 EMBEDDED REFERENCE SECTION
+             6. DUAL-PANEL COMPLIANCE WORKBENCH (CENTER OF ATTRACTION HIGHLIGHT)
              ========================================================================== -->
-        <section class="gov-card p-6 border-t-4 border-[#4A2E18] space-y-4">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-lg font-bold text-[#1A365D]">Statutory Reference Guide — PCR Rules, 2011</h3>
-                    <p class="text-xs text-gray-600">Quick statutory reference for enforcement officers during packaging inspection.</p>
+        <section id="scanner-workbench" class="space-y-6 pt-2">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+                <!-- LEFT PANEL: HIGHLIGHTED MAIN SCANNING WORKBENCH (5 Cols - CENTER OF ATTRACTION) -->
+                <div class="lg:col-span-5 space-y-4">
+                    
+                    <div class="workbench-main-card overflow-hidden">
+                        
+                        <!-- Highlight Header Strip -->
+                        <div class="workbench-header-strip flex items-center justify-between">
+                            <h3 class="text-base sm:text-lg font-extrabold flex items-center gap-2">
+                                <svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                Verify Labeled Information
+                            </h3>
+                            <span class="text-xs font-bold bg-yellow-400 text-black px-2.5 py-0.5 rounded shadow">MAIN FEATURE</span>
+                        </div>
+
+                        <div class="p-4 sm:p-5 space-y-4">
+
+                            <form id="scan-form" class="space-y-4">
+                                
+                                <!-- Product Name Input -->
+                                <div>
+                                    <label class="block text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-wider mb-1">
+                                        Product / Commodity Name <span class="text-red-600">*</span>
+                                    </label>
+                                    <input type="text" id="custom-filename" placeholder="e.g. Amul Butter 500g / Britannia Biscuits" required
+                                           class="w-full px-3.5 py-2.5 text-sm border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#006699] focus:border-[#006699] focus:outline-none bg-white font-medium">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-wider mb-1">Brand / Packer</label>
+                                        <input type="text" id="brand-name" placeholder="e.g. Gujarat Milk Fed."
+                                               class="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-[#006699] focus:outline-none bg-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-wider mb-1">Batch / SKU ID</label>
+                                        <input type="text" id="sku-id" placeholder="e.g. BATCH-2026-99A"
+                                               class="w-full px-3 py-2 text-sm border border-gray-300 rounded font-mono focus:ring-2 focus:ring-[#006699] focus:outline-none bg-white">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-wider mb-1">Inspector Code</label>
+                                    <input type="text" value="INSP-DEL-2026-8841" readonly
+                                           class="w-full px-3 py-2 text-sm border border-gray-200 rounded font-mono bg-gray-50 text-gray-600">
+                                </div>
+
+                                <!-- Highlighted Center of Attraction Dropzone -->
+                                <div>
+                                    <label class="block text-xs sm:text-sm font-bold text-[#006699] uppercase tracking-wider mb-1 flex items-center justify-between">
+                                        <span>Upload Packaging Label Photo <span class="text-red-600">*</span></span>
+                                        <span class="text-xs font-mono text-gray-500 font-semibold">JPG, PNG, WEBP</span>
+                                    </label>
+                                    <div id="dropzone-area" class="dropzone-box rounded-xl p-5 sm:p-6 text-center space-y-3">
+                                        <div class="w-12 h-12 bg-blue-100 text-[#006699] rounded-full flex items-center justify-center mx-auto border-2 border-[#006699]/30 shadow-sm">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm sm:text-base font-bold text-gray-900">Drag & Drop package label image here</p>
+                                            <p class="text-xs sm:text-sm text-gray-600 mt-1">High-resolution images give best DPI letter height accuracy</p>
+                                        </div>
+                                        <div class="flex items-center justify-center gap-2 pt-1">
+                                            <button type="button" id="camera-btn" class="px-4 py-2 bg-[#006699] text-white text-xs sm:text-sm font-bold rounded-lg shadow-md hover:bg-blue-800 flex items-center gap-1.5 transition">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h0.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                                Take Photo
+                                            </button>
+                                            <button type="button" id="gallery-btn" class="px-4 py-2 bg-gray-900 text-white text-xs sm:text-sm font-bold rounded-lg shadow-md hover:bg-black flex items-center gap-1.5 transition">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                                Browse File
+                                            </button>
+                                        </div>
+                                        <input type="file" id="camera-input" accept="image/*" capture="environment" hidden>
+                                        <input type="file" id="gallery-input" accept=".jpg, .jpeg, .png, .webp" hidden>
+                                    </div>
+                                </div>
+
+                                <!-- Preview Container -->
+                                <div id="image-preview-container" class="hidden border-2 border-blue-200 rounded-lg p-2.5 bg-blue-50/40 text-center">
+                                    <img id="image-preview" src="" alt="Package Label Preview" class="max-h-56 mx-auto rounded shadow-sm">
+                                    <p id="image-name" class="text-xs font-mono text-gray-700 mt-2 font-bold truncate"></p>
+                                </div>
+
+                                <!-- Run Statutory Audit Button -->
+                                <button type="submit" id="submit-scan-btn"
+                                        class="w-full py-3.5 px-5 bg-gradient-to-r from-[#006699] to-[#004466] hover:from-blue-800 hover:to-blue-900 text-white font-extrabold text-sm sm:text-base rounded-lg shadow-lg flex items-center justify-center gap-2 transition transform active:scale-95">
+                                    <svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>Run Statutory Compliance Audit</span>
+                                </button>
+                            </form>
+
+                            <!-- Progress Loader -->
+                            <div id="scan-loader" class="hidden py-6 text-center space-y-3">
+                                <div class="inline-block animate-spin rounded-full h-9 w-9 border-4 border-[#006699] border-t-transparent"></div>
+                                <div>
+                                    <p id="loader-status" class="text-xs sm:text-sm font-bold text-[#006699]">Applying OpenCV Preprocessing...</p>
+                                    <p class="text-xs text-gray-500 mt-0.5">Executing EasyOCR Tokenization & DPI Font-Height Analysis</p>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                                    <div id="loader-bar" class="bg-[#006699] h-full transition-all duration-300" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <button onclick="openRulesModal()" class="px-3 py-1.5 bg-[#4A2E18] text-white text-xs font-bold rounded hover:bg-[#3A2312]">
-                    View Full Statutory Text
-                </button>
+
+                <!-- RIGHT PANEL: Audit Results & Evidence (7 Cols) -->
+                <div class="lg:col-span-7 space-y-4">
+                    
+                    <!-- Placeholder initial state -->
+                    <div id="initial-placeholder" class="gov-card p-5 sm:p-6 text-center space-y-4">
+                        <div class="w-12 h-12 bg-blue-50 text-[#006699] rounded-full flex items-center justify-center mx-auto border border-blue-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-extrabold text-[#006699]">Enforcement Audit Output</h3>
+                            <p class="text-xs sm:text-sm text-gray-600 max-w-md mx-auto mt-1">
+                                Upload a package label image on the left panel to execute an automated compliance check against the 6 mandatory statutory declarations under <span class="font-semibold text-gray-800">Legal Metrology Rules, 2011</span>.
+                            </p>
+                        </div>
+
+                        <!-- Refined Rule Pills -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-2 text-xs sm:text-sm">
+                            <div class="rule-pill-box">
+                                <div class="text-xs text-gray-500 font-mono">Rule 6(1)(a)</div>
+                                <div>Manufacturer / Packer</div>
+                            </div>
+                            <div class="rule-pill-box">
+                                <div class="text-xs text-gray-500 font-mono">Rule 6(1)(b)</div>
+                                <div>Net Quantity</div>
+                            </div>
+                            <div class="rule-pill-box">
+                                <div class="text-xs text-gray-500 font-mono">Rule 6(1)(c)</div>
+                                <div>Maximum Retail Price (MRP)</div>
+                            </div>
+                            <div class="rule-pill-box">
+                                <div class="text-xs text-gray-500 font-mono">Rule 6(1)(d)</div>
+                                <div>Date of Mfg / Import</div>
+                            </div>
+                            <div class="rule-pill-box">
+                                <div class="text-xs text-gray-500 font-mono">Rule 6(1)(e)</div>
+                                <div>Customer Care Info</div>
+                            </div>
+                            <div class="rule-pill-box">
+                                <div class="text-xs text-gray-500 font-mono">Rule 6(1)(f)</div>
+                                <div>Country of Origin</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Results Output -->
+                    <div id="results-panel" class="hidden space-y-4">
+                        
+                        <!-- Verdict Banner -->
+                        <div id="verdict-banner" class="rounded-lg p-3.5 text-white shadow-sm flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div id="verdict-icon" class="p-1.5 bg-white/20 rounded-full"></div>
+                                <div>
+                                    <div class="text-xs uppercase font-extrabold tracking-wider opacity-90">Statutory Audit Verdict</div>
+                                    <h3 id="verdict-status" class="text-xl sm:text-2xl font-black">COMPLIANT</h3>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs font-mono opacity-80">Inspection Ref</div>
+                                <div id="inspection-id-badge" class="text-xs sm:text-sm font-mono font-bold">#SCAN-0000</div>
+                            </div>
+                        </div>
+
+                        <!-- Main Audit Details -->
+                        <div class="gov-card p-4 space-y-4">
+                            
+                            <!-- Bounding box photo evidence -->
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider mb-2 flex items-center justify-between">
+                                    <span>Photographic Evidence & Bounding Boxes</span>
+                                    <span class="text-xs font-mono text-gray-500">DPI Resolution: 300</span>
+                                </h4>
+                                <div class="border rounded bg-black/90 p-2 text-center overflow-hidden">
+                                    <img id="evidence-image" src="" alt="Evidence Image" class="max-h-64 mx-auto rounded">
+                                </div>
+                            </div>
+
+                            <!-- Extracted Declarations Summary Grid -->
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-bold text-[#006699] uppercase tracking-wider mb-2">
+                                    Extracted Statutory Declarations (Normalized Summary)
+                                </h4>
+                                <div id="structured-declarations-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs sm:text-sm">
+                                    <!-- JS populated -->
+                                </div>
+                            </div>
+
+                            <!-- Statutory Audit Matrix Table -->
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">
+                                    Statutory Audit Matrix (Legal Metrology PCR, 2011)
+                                </h4>
+                                <div class="overflow-x-auto">
+                                    <table class="gov-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Rule ID</th>
+                                                <th>Statutory Clause</th>
+                                                <th>Extracted Snippet</th>
+                                                <th>Verdict</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rules-matrix-tbody">
+                                            <!-- JS populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Font Size DPI -> mm Compliance -->
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">
+                                    Font Size & Letter Height Analysis (DPI → mm)
+                                </h4>
+                                <div id="font-analysis-list" class="space-y-1.5 text-xs sm:text-sm">
+                                    <!-- JS populated -->
+                                </div>
+                            </div>
+
+                            <!-- Download PDF Link Button -->
+                            <div class="pt-2">
+                                <a id="download-pdf-btn" href="#" target="_blank"
+                                   class="w-full py-3 px-4 bg-[#1E7E34] hover:bg-green-800 text-white font-bold text-xs sm:text-sm rounded shadow text-center flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    <span>Download Official PDF Inspection Notice</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                <div class="p-3 border rounded bg-white space-y-1">
-                    <span class="font-bold text-[#1A365D]">Rule 6(1)(a) Manufacturer</span>
-                    <p class="text-gray-600">Name and complete address of the manufacturer or packer or importer must be clearly declared.</p>
-                </div>
-                <div class="p-3 border rounded bg-white space-y-1">
-                    <span class="font-bold text-[#1A365D]">Rule 6(1)(b) Net Quantity</span>
-                    <p class="text-gray-600">Net quantity in standard metric units (g, kg, ml, l, pcs). Font height min 1.0mm to 6.0mm depending on PDP area.</p>
-                </div>
-                <div class="p-3 border rounded bg-white space-y-1">
-                    <span class="font-bold text-[#1A365D]">Rule 6(1)(e) Maximum Retail Price</span>
-                    <p class="text-gray-600">MRP inclusive of all taxes clearly printed. No overcharging permitted above declared MRP.</p>
-                </div>
-            </div>
+
         </section>
 
         <!-- ==========================================================================
-             5. DEPARTMENT OF CONSUMER AFFAIRS (DoCA) CONTACT SECTION
+             7. CONTACT DETAILS & QUICK LINKS SECTION (Increased Font Size)
              ========================================================================== -->
-        <section id="contact-doca-section" class="gov-card p-6 border-t-4 border-[#1A365D] bg-white">
-            <h3 class="text-lg font-bold text-[#1A365D] border-b pb-2 mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-[#1A365D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m3 0h1m-4-8l-2-2m0 0l-2 2m2-2v6"/></svg>
-                Contact Department of Consumer Affairs
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                <div class="space-y-2">
-                    <p class="font-bold text-[#4A2E18]">The Director, Legal Metrology</p>
-                    <p class="text-gray-700">Department of Consumer Affairs,</p>
-                    <p class="text-gray-700">461-A, Krishi Bhavan, New Delhi.</p>
-                    <div class="pt-2 text-xs font-mono space-y-1">
-                        <p class="text-gray-800"><span class="font-bold">Tel:</span> 011-23386194</p>
-                        <p class="text-gray-800"><span class="font-bold">Tel:</span> 011-23389489</p>
+        <section id="contact-us" class="border-t-2 border-[#006699] pt-6 pb-6 space-y-4">
+            
+            <!-- Title above Contact Us Section -->
+            <div class="border-b border-gray-200 pb-2">
+                <h2 class="text-xl sm:text-2xl font-black text-[#006699] tracking-tight">
+                    Department of Consumer Affairs (DoCA)
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-600 font-semibold">Official Contact Directory & Portal Information</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-[#1E293B]">
+                
+                <!-- Left Column: Contact Details (Increased font size) -->
+                <div class="space-y-3.5">
+                    <h3 class="text-base sm:text-lg font-extrabold text-[#006699] uppercase tracking-wider">Contact Details</h3>
+                    
+                    <div class="space-y-2.5 leading-relaxed">
+                        <p><strong class="font-bold text-gray-900">Address:</strong> Department of Consumer Affairs Room No. 456 C , Krishi Bhawan New Delhi 110001</p>
+                        <p><strong class="font-bold text-gray-900">Phone No:</strong> <span class="font-mono">011-23386189</span></p>
+                        <p><strong class="font-bold text-gray-900">Fax:</strong> <span class="text-gray-400 font-mono">—</span></p>
+                        <p><strong class="font-bold text-gray-900">Email:</strong> <span class="text-gray-400 font-mono">—</span></p>
+                        
+                        <div class="flex items-center gap-3 pt-1">
+                            <strong class="font-bold text-gray-900">Social Media:</strong>
+                            <div class="flex items-center gap-2">
+                                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-fb" title="Facebook">f</a>
+                                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-x" title="X (Twitter)">𝕏</a>
+                                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-yt" title="YouTube">▶</a>
+                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-ig" title="Instagram">📷</a>
+                            </div>
+                        </div>
+
+                        <p><strong class="font-bold text-gray-900">Official Website:</strong> <a href="https://doca.gov.in" target="_blank" rel="noopener noreferrer" class="text-[#006699] hover:underline font-bold inline-flex items-center gap-1">https://doca.gov.in ↗</a></p>
                     </div>
                 </div>
-                <div class="space-y-2">
-                    <p class="font-bold text-[#1A365D]">Technical Support & Portal Assistance</p>
-                    <p class="text-xs text-gray-600">For portal integration, enforcement login, or system queries:</p>
-                    <div class="text-xs font-mono space-y-1 pt-1">
-                        <p class="text-gray-800"><span class="font-bold">Technical Tel:</span> 011 - 23381689</p>
-                    </div>
-                    <div class="pt-2 text-xs space-y-1">
-                        <p class="font-bold text-gray-800">Official Email Addresses:</p>
-                        <p class="font-mono text-blue-700">dirwm-ca[at]nic[dot]in</p>
-                        <p class="font-mono text-blue-700">ashutosh[dot]agarwal13[at]nic[dot]in</p>
-                    </div>
+
+                <!-- Right Column: Quick Links (Increased font size) -->
+                <div class="space-y-3.5">
+                    <h3 class="text-base sm:text-lg font-extrabold text-[#006699] uppercase tracking-wider">Quick Links</h3>
+                    
+                    <ul class="space-y-2.5 list-disc list-inside text-[#006699] font-medium">
+                        <li>
+                            <a href="https://consumeraffairs.gov.in/pages/whos-who" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                                https://consumeraffairs.gov.in/pages/whos-who
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://consumeraffairs.gov.in/pages/web-information-manager" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                                https://consumeraffairs.gov.in/pages/web-information-manager
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://consumeraffairs.gov.in/pages/about-department" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                                https://consumeraffairs.gov.in/pages/about-department
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+
             </div>
         </section>
 
     </main>
 
     <!-- ==========================================================================
-         6. PARTNER INITIATIVES STRIP
+         8. GOVERNMENT FOOTER SECTION
          ========================================================================== -->
-    <div class="bg-white border-t border-gray-200 py-4 px-4 no-print">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-8 opacity-90">
-            <img src="/assets/india-gov.png" alt="india.gov.in" class="h-8 w-auto hover:opacity-100 transition" />
-            <img src="/assets/digital-india.png" alt="Digital India" class="h-8 w-auto hover:opacity-100 transition" />
-            <img src="/assets/Jago-Grahak-Jago.png" alt="Jago Grahak Jago" class="h-8 w-auto hover:opacity-100 transition" />
-            <img src="/assets/nch-logo.png" alt="National Consumer Helpline" class="h-8 w-auto hover:opacity-100 transition" />
-            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">MyGov • OGD India • NIC</span>
+    <footer class="mt-auto no-print">
+        
+        <!-- Footer Top Links Bar (Connected to Interactive Modals) -->
+        <div class="footer-top-links-bar">
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-2.5 sm:gap-5 text-sm font-bold">
+                <a href="javascript:void(0)" onclick="openAboutModal()">About Us</a>
+                <span>/</span>
+                <a href="javascript:void(0)" onclick="openHelpModal()">Help & Guide</a>
+                <span>/</span>
+                <a href="javascript:void(0)" onclick="openSitemapModal()">Sitemap</a>
+                <span>/</span>
+                <a href="javascript:void(0)" onclick="openPoliciesModal()">Website Policies</a>
+                <span>/</span>
+                <a href="javascript:void(0)" onclick="openFeedbackModal()">Feedback</a>
+                <span>/</span>
+                <a href="#contact-us">Contact Us</a>
+            </div>
         </div>
-    </div>
 
-    <!-- ==========================================================================
-         7. STYLISH FADED BOTTOM BORDER VECTOR & FOOTER
-         ========================================================================== -->
-    <div class="explore-bharat-border"></div>
+        <!-- Footer Main Area -->
+        <div class="footer-main-dark">
+            <div class="max-w-7xl mx-auto space-y-3">
+                <div class="flex items-center justify-center gap-2">
+                    <span class="sih-watermark-footer">* SIH26034 PROTOTYPE</span>
+                </div>
 
-    <footer class="bg-[#1A1A1A] text-gray-300 text-xs py-6 px-4 no-print">
-        <div class="max-w-7xl mx-auto text-center space-y-2">
-            <p>Website Content Managed by <strong class="text-white">Ministry of Consumer Affairs, Food & Public Distribution, Government of India</strong></p>
-            <p>Designed, Developed and Hosted by <strong class="text-[#FFD700]">National Informatics Centre (NIC)</strong></p>
-            <p class="text-gray-500">Enforcement Platform for Legal Metrology (Packaged Commodities) Rules, 2011 • SIH26034 Prototype</p>
-            <p class="text-gray-600 font-mono text-[11px]">Last Updated: September 03, 2026</p>
+                <p class="text-xs sm:text-sm font-semibold text-[#FFD700]">
+                    Developed by <strong class="text-white font-black underline decoration-yellow-400">Big-6 group of Sushant University</strong>
+                </p>
+                <p>© Hosted and managed in collaboration with <strong class="text-white font-semibold">National Informatics Centre (NIC)</strong>,</p>
+                <p><strong class="text-white font-semibold">Ministry of Consumer Affairs, Food & Public Distribution</strong>, Government of India</p>
+                <p class="text-gray-400 text-xs font-semibold pt-1">Last Updated: <span class="text-gray-200">Sep 03, 2026</span></p>
+
+                <!-- NIC & Digital India Footer Logos Row -->
+                <div class="footer-logo-row">
+                    <img src="/static/assets/nic-logo.png" alt="National Informatics Centre Logo" class="h-10 w-auto opacity-95 hover:opacity-100 transition" />
+                    <div class="footer-divider-line"></div>
+                    <img src="/static/assets/digital-india-footer.png" alt="Digital India Logo" class="h-10 w-auto opacity-95 hover:opacity-100 transition" />
+                </div>
+            </div>
         </div>
+
     </footer>
 
     <!-- ==========================================================================
-         8. MODALS & SCRIPTS
+         9. INTERACTIVE MODALS (Help, Sitemap, Policies, Feedback, About Us, Rules)
          ========================================================================== -->
     
+    <!-- 1. Help & User Guide Modal -->
+    <div id="help-modal" class="gov-modal">
+        <div class="gov-card max-w-3xl w-full max-h-[88vh] flex flex-col p-6 space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <div>
+                    <h3 class="text-lg font-extrabold text-[#006699]">Help Center & Application User Guide</h3>
+                    <p class="text-xs text-gray-500 font-semibold">Step-by-step instructions & technical support contact form</p>
+                </div>
+                <button onclick="closeHelpModal()" class="text-gray-500 hover:text-black font-bold text-xl">&times;</button>
+            </div>
+            
+            <div class="overflow-y-auto space-y-5 text-xs sm:text-sm text-gray-700 leading-relaxed pr-1">
+                
+                <!-- Section A: User Guide -->
+                <div class="space-y-3">
+                    <h4 class="font-extrabold text-[#006699] text-base border-b pb-1">📖 How to Use Nirīkshan</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                            <div class="font-bold text-[#006699]">Step 1: Upload Label Photo</div>
+                            <p class="text-gray-600">Drag & drop or take a photo of the packaged commodity's Principal Display Panel (PDP).</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                            <div class="font-bold text-[#006699]">Step 2: Enter Product Details</div>
+                            <div class="text-gray-600">Provide the commodity name, brand, and batch ID for official record logging.</div>
+                        </div>
+                        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                            <div class="font-bold text-[#006699]">Step 3: Run Statutory Audit</div>
+                            <p class="text-gray-600">Click "Run Statutory Compliance Audit" to run AI OCR, DPI font analysis & 6-rule check.</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                            <div class="font-bold text-[#006699]">Step 4: Download Court Notice</div>
+                            <p class="text-gray-600">Review PASS / FAIL verdict, font height compliance, and download official PDF inspection report.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B: Mail Us / Contact Support Form -->
+                <div class="space-y-3 border-t pt-4">
+                    <h4 class="font-extrabold text-[#006699] text-base border-b pb-1">✉️ Mail Us / Technical Assistance</h4>
+                    <form id="help-form" onsubmit="submitHelpForm(event)" class="space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Your Full Name <span class="text-red-600">*</span></label>
+                                <input type="text" required placeholder="e.g. Officer R. Sharma" class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Official Email Address <span class="text-red-600">*</span></label>
+                                <input type="email" required placeholder="e.g. sharma@nic.in" class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699]">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Subject <span class="text-red-600">*</span></label>
+                            <input type="text" required placeholder="e.g. Technical query regarding OCR extraction" class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Message / Details <span class="text-red-600">*</span></label>
+                            <textarea required rows="3" placeholder="Explain your query or issue..." class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699]"></textarea>
+                        </div>
+                        <button type="submit" class="px-5 py-2 bg-[#006699] text-white font-bold text-xs rounded hover:bg-blue-800 shadow">
+                            Submit Support Query
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="text-right border-t pt-3">
+                <button onclick="closeHelpModal()" class="px-4 py-1.5 bg-gray-800 text-white rounded text-xs font-bold">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sitemap Modal -->
+    <div id="sitemap-modal" class="gov-modal">
+        <div class="gov-card max-w-2xl w-full max-h-[85vh] flex flex-col p-6 space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <div>
+                    <h3 class="text-lg font-extrabold text-[#006699]">Application Sitemap & Directory</h3>
+                    <p class="text-xs text-gray-500 font-semibold">Hierarchical structure of Nirīkshan portal</p>
+                </div>
+                <button onclick="closeSitemapModal()" class="text-gray-500 hover:text-black font-bold text-xl">&times;</button>
+            </div>
+            
+            <div class="overflow-y-auto space-y-4 text-xs sm:text-sm text-gray-700 leading-relaxed pr-1">
+                
+                <div class="p-3 border rounded-lg bg-gray-50 space-y-2">
+                    <div class="font-extrabold text-[#006699] text-sm flex items-center gap-1.5">
+                        <span>🏠 Home Page (`/`)</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-xs text-gray-600 pl-2">
+                        <li>Top Accessibility Bar & Language / Font Controls</li>
+                        <li>Institutional Header (DoCA Official Seal & Nirīkshan Brand)</li>
+                        <li>Hero Search Banner & Advanced Search Capsule</li>
+                        <li>Consumer Protection Directive (PM Quote Card)</li>
+                        <li><strong>Verify Labeled Information (Scanning & Upload Workbench)</strong></li>
+                        <li>Statutory Audit Output (Verdict Banner, Bounding Box Evidence, 6 Rules Matrix, DPI Letter Height Table, PDF Notice Download)</li>
+                        <li>Department of Consumer Affairs Contact Details & Quick Links</li>
+                    </ul>
+                </div>
+
+                <div class="p-3 border rounded-lg bg-gray-50 space-y-2">
+                    <div class="font-extrabold text-[#006699] text-sm flex items-center gap-1.5">
+                        <span>📊 Enforcement Dashboard (`/dashboard`)</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-xs text-gray-600 pl-2">
+                        <li>Live Market Surveillance Key Performance Indicators (Total, Compliant, Non-Compliant, Compliance Rate %)</li>
+                        <li>Real-time Text Search & Statutory Verdict Filter</li>
+                        <li>Official Inspection Records Data Table</li>
+                        <li>Audit Log CSV Exporter (`/api/export-csv`)</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="text-right border-t pt-3">
+                <button onclick="closeSitemapModal()" class="px-4 py-1.5 bg-gray-800 text-white rounded text-xs font-bold">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Website Policies Modal -->
+    <div id="policies-modal" class="gov-modal">
+        <div class="gov-card max-w-2xl w-full max-h-[85vh] flex flex-col p-6 space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <div>
+                    <h3 class="text-lg font-extrabold text-[#006699]">Government Website Policies</h3>
+                    <p class="text-xs text-gray-500 font-semibold">Department of Consumer Affairs & Legal Metrology Directives</p>
+                </div>
+                <button onclick="closePoliciesModal()" class="text-gray-500 hover:text-black font-bold text-xl">&times;</button>
+            </div>
+            
+            <div class="overflow-y-auto space-y-4 text-xs sm:text-sm text-gray-700 leading-relaxed pr-1">
+                
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                    <h4 class="font-bold text-[#006699]">1. Legal Metrology (Packaged Commodities) Rules, 2011 Policy</h4>
+                    <p class="text-gray-600 text-xs">
+                        All pre-packaged commodities sold across India must declare MRP (inclusive of all taxes), Net Quantity, Date of Manufacture/Import, Manufacturer Name & Address, Country of Origin, and Customer Care Details on the Principal Display Panel in legible font sizes.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                    <h4 class="font-bold text-[#006699]">2. Consumer Protection Act, 2019 Directive</h4>
+                    <p class="text-gray-600 text-xs">
+                        Safeguards consumers against unfair trade practices, misleading advertisements, overcharging above declared MRP, and non-compliant packaging declarations across retail and e-commerce platforms.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                    <h4 class="font-bold text-[#006699]">3. Digital India Data Security & Privacy Policy</h4>
+                    <p class="text-gray-600 text-xs">
+                        All uploaded packaging label images and extracted audit data are processed locally with 100% offline capability, ensuring zero external API transmission and full data security compliance.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="text-right border-t pt-3">
+                <button onclick="closePoliciesModal()" class="px-4 py-1.5 bg-gray-800 text-white rounded text-xs font-bold">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Feedback Modal -->
+    <div id="feedback-modal" class="gov-modal">
+        <div class="gov-card max-w-xl w-full max-h-[85vh] flex flex-col p-6 space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <div>
+                    <h3 class="text-lg font-extrabold text-[#006699]">User Feedback & Portal Assessment</h3>
+                    <p class="text-xs text-gray-500 font-semibold">Share your feedback to help us enhance Nirīkshan</p>
+                </div>
+                <button onclick="closeFeedbackModal()" class="text-gray-500 hover:text-black font-bold text-xl">&times;</button>
+            </div>
+            
+            <form id="feedback-form" onsubmit="submitFeedbackForm(event)" class="space-y-3 text-xs sm:text-sm">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Overall Rating <span class="text-red-600">*</span></label>
+                    <div class="flex items-center gap-2 text-amber-500 text-xl font-bold">
+                        <label class="cursor-pointer hover:scale-110 transition"><input type="radio" name="rating" value="5" checked class="hidden"> ★★★★★</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Feedback Category <span class="text-red-600">*</span></label>
+                    <select required class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699] bg-white">
+                        <option value="USABILITY">Usability & Design</option>
+                        <option value="OCR_ACCURACY">OCR & Audit Rules Accuracy</option>
+                        <option value="FEATURE_REQUEST">Feature Request</option>
+                        <option value="GENERAL">General Feedback</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Your Name</label>
+                        <input type="text" placeholder="e.g. Inspector R. Verma" class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Email Address</label>
+                        <input type="email" placeholder="e.g. verma@gov.in" class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699]">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Comments / Feedback <span class="text-red-600">*</span></label>
+                    <textarea required rows="3" placeholder="Write your comments regarding the website..." class="w-full px-3 py-2 text-xs border rounded focus:ring-2 focus:ring-[#006699]"></textarea>
+                </div>
+
+                <div class="text-right border-t pt-3">
+                    <button type="submit" class="px-5 py-2 bg-[#006699] text-white font-bold text-xs rounded hover:bg-blue-800 shadow">
+                        Submit Official Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Us Modal -->
+    <div id="about-modal" class="gov-modal">
+        <div class="gov-card max-w-2xl w-full max-h-[85vh] flex flex-col p-6 space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <div>
+                    <h3 class="text-lg font-extrabold text-[#006699]">About Nirīkshan — Packaged Commodity Compliance Auditor</h3>
+                    <p class="text-xs text-gray-500 font-mono font-bold mt-0.5">SIH26034 Prototype • B.Tech 3rd Sem (Big-6 Group), Sushant University</p>
+                </div>
+                <button onclick="closeAboutModal()" class="text-gray-500 hover:text-black font-bold text-xl">&times;</button>
+            </div>
+            
+            <div class="overflow-y-auto space-y-4 text-xs sm:text-sm text-gray-700 leading-relaxed pr-1">
+                <div class="p-3.5 bg-blue-50 border border-blue-200 rounded-lg space-y-1">
+                    <h4 class="font-bold text-[#006699] text-sm">Project Overview & Team Credits</h4>
+                    <p>
+                        This application is an automated compliance verification prototype developed by the <strong>B.Tech 3rd Semester students (Big-6 Group) of Sushant University</strong> for the <strong>Smart India Hackathon 2026 (SIH26034)</strong>.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-bold text-gray-900 text-sm">Core Functionality</h4>
+                    <p>
+                        Nirīkshan checks packaged commodities against the mandatory statutory declarations required under the <strong>Legal Metrology (Packaged Commodities) Rules, 2011</strong>. Using advanced computer vision and OCR, it verifies mandatory declarations (Manufacturer Details, Net Quantity, MRP, Manufacturing Date, Country of Origin, and Customer Care Info) alongside letter height font analysis — instantly generating a clear <strong>PASS</strong> or <strong>FAIL</strong> compliance verdict with court-ready photographic evidence.
+                    </p>
+                </div>
+
+                <div class="p-3.5 bg-amber-50 border border-amber-200 rounded-lg space-y-2">
+                    <h4 class="font-bold text-amber-900 text-sm">Scalability & Future Roadmap</h4>
+                    <p class="text-amber-950">
+                        This project is built on a highly modular and scalable architecture (FastAPI, EasyOCR, OpenCV). It is currently in its <strong>active testing phase</strong>. In future iterations, this platform will scale to provide end-to-end compliance services accessible directly to <strong>everyday consumer citizens</strong> as well as <strong>on-field enforcement inspectors</strong> across India.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-right border-t pt-3">
+                <button onclick="closeAboutModal()" class="px-5 py-2 bg-gray-900 text-white rounded-lg text-xs font-bold hover:bg-black shadow">Close Window</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Rules Modal -->
     <div id="rules-modal" class="gov-modal">
-        <div class="gov-card max-w-3xl w-full max-h-[85vh] flex flex-col p-6 space-y-4">
+        <div class="gov-card max-w-2xl w-full max-h-[85vh] flex flex-col p-6 space-y-4">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="text-lg font-bold text-[#1A365D]">Legal Metrology (Packaged Commodities) Rules, 2011</h3>
+                <h3 class="text-base font-bold text-[#006699]">Legal Metrology (Packaged Commodities) Rules, 2011</h3>
                 <button onclick="closeRulesModal()" class="text-gray-500 hover:text-black font-bold text-xl">&times;</button>
             </div>
-            <div class="overflow-y-auto space-y-4 text-xs pr-2">
+            <div class="overflow-y-auto space-y-3 text-xs pr-2">
                 <div class="p-3 bg-blue-50 border border-blue-200 rounded">
-                    <h4 class="font-bold text-[#1A365D] mb-1">Rule 6: Declarations to be made on every package</h4>
-                    <p class="text-gray-700">Every package shall bear thereon or on label securely affixed thereto, a definite, plain and conspicuous declaration as to:</p>
+                    <h4 class="font-bold text-[#006699] mb-1">Rule 6: Mandatory Declarations</h4>
+                    <p class="text-gray-700">Every packaged commodity must declare the following 6 mandatory fields on the principal display panel:</p>
                 </div>
-                <div class="space-y-2 border-l-2 border-[#1A365D] pl-3">
-                    <p><strong>(a) Name and address of the manufacturer:</strong> Name and complete address of manufacturer/packer/importer.</p>
-                    <p><strong>(b) Net quantity:</strong> Weight, measure or number of commodity contained in the package in standard metric units.</p>
-                    <p><strong>(d) Month and year:</strong> Month and year in which commodity is manufactured, packed or imported.</p>
-                    <p><strong>(e) Retail sale price:</strong> Maximum Retail Price (MRP) inclusive of all taxes.</p>
-                    <p><strong>(f) Country of origin:</strong> Mandatory declaration of country of origin for all packaged commodities.</p>
-                    <p><strong>(g) Consumer Care details:</strong> Name, address, telephone number, and email address of consumer complaint officer.</p>
+                <div class="space-y-2 border-l-2 border-[#006699] pl-3">
+                    <p><strong>(a) Manufacturer Name & Address:</strong> Complete postal address with pincode.</p>
+                    <p><strong>(b) Net Quantity:</strong> Standard metric unit (g, kg, ml, l, pcs).</p>
+                    <p><strong>(c) Maximum Retail Price (MRP):</strong> "MRP inclusive of all taxes".</p>
+                    <p><strong>(d) Date of Mfg/Packing/Import:</strong> Month and year of packing.</p>
+                    <p><strong>(e) Customer Care Info:</strong> Telephone number and official email address.</p>
+                    <p><strong>(f) Country of Origin:</strong> Mandatory declaration of country of origin.</p>
                 </div>
             </div>
             <div class="text-right border-t pt-3">
-                <button onclick="closeRulesModal()" class="px-4 py-2 bg-gray-800 text-white rounded text-xs font-bold">Close Window</button>
+                <button onclick="closeRulesModal()" class="px-4 py-1.5 bg-gray-800 text-white rounded text-xs font-bold">Close Window</button>
             </div>
         </div>
     </div>
 
-    <!-- Circulars Modal -->
-    <div id="circulars-modal" class="gov-modal">
-        <div class="gov-card max-w-xl w-full p-6 space-y-4">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="text-lg font-bold text-[#1A365D]">DoCA Official Circulars & Notifications</h3>
-                <button onclick="closeCircularsModal()" class="text-gray-500 hover:text-black font-bold text-xl">&times;</button>
-            </div>
-            <div class="space-y-3 text-xs">
-                <div class="p-2 border rounded hover:bg-gray-50">
-                    <span class="font-bold text-[#1A365D]">WM-10(5)/2026:</span> Amendment on Mandatory Country of Origin Declarations.
-                </div>
-                <div class="p-2 border rounded hover:bg-gray-50">
-                    <span class="font-bold text-[#1A365D]">WM-09(2)/2025:</span> Font Size Guidelines for Principal Display Panel (PDP).
-                </div>
-            </div>
-            <div class="text-right border-t pt-3">
-                <button onclick="closeCircularsModal()" class="px-4 py-2 bg-gray-800 text-white rounded text-xs font-bold">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notifications -->
+    <!-- Toast Notifications Container -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
 
     <!-- Scanner JavaScript -->
@@ -556,11 +839,67 @@
         function closeRulesModal() {
             document.getElementById('rules-modal').classList.remove('open');
         }
-        function openCircularsModal() {
-            document.getElementById('circulars-modal').classList.add('open');
+        function openAboutModal() {
+            document.getElementById('about-modal').classList.add('open');
         }
-        function closeCircularsModal() {
-            document.getElementById('circulars-modal').classList.remove('open');
+        function closeAboutModal() {
+            document.getElementById('about-modal').classList.remove('open');
+        }
+        function openHelpModal() {
+            document.getElementById('help-modal').classList.add('open');
+        }
+        function closeHelpModal() {
+            document.getElementById('help-modal').classList.remove('open');
+        }
+        function openSitemapModal() {
+            document.getElementById('sitemap-modal').classList.add('open');
+        }
+        function closeSitemapModal() {
+            document.getElementById('sitemap-modal').classList.remove('open');
+        }
+        function openPoliciesModal() {
+            document.getElementById('policies-modal').classList.add('open');
+        }
+        function closePoliciesModal() {
+            document.getElementById('policies-modal').classList.remove('open');
+        }
+        function openFeedbackModal() {
+            document.getElementById('feedback-modal').classList.add('open');
+        }
+        function closeFeedbackModal() {
+            document.getElementById('feedback-modal').classList.remove('open');
+        }
+        function scrollToWorkbench() {
+            const input = document.getElementById('hero-search-input');
+            const customInput = document.getElementById('custom-filename');
+            if (input && customInput && input.value.trim()) {
+                customInput.value = input.value.trim();
+            }
+            document.getElementById('scanner-workbench').scrollIntoView({ behavior: 'smooth' });
+        }
+        function submitHelpForm(e) {
+            e.preventDefault();
+            closeHelpModal();
+            const container = document.getElementById('toast-container');
+            if (container) {
+                const toast = document.createElement('div');
+                toast.className = 'p-3 rounded shadow-md text-xs font-bold text-white bg-green-700 flex items-center gap-2';
+                toast.innerHTML = '<span>✓ Support query submitted to Department of Consumer Affairs technical team!</span>';
+                container.appendChild(toast);
+                setTimeout(() => toast.remove(), 4000);
+            }
+        }
+        function submitFeedbackForm(e) {
+            e.preventDefault();
+            closeFeedbackModal();
+            const container = document.getElementById('toast-container');
+            if (container) {
+                const toast = document.createElement('div');
+                toast.className = 'p-3 rounded shadow-md text-xs font-bold text-white bg-green-700 flex items-center gap-2';
+                toast.innerHTML = '<span>✓ Thank you for your feedback! Your comments have been recorded.</span>';
+                container.appendChild(toast);
+                setTimeout(() => toast.remove(), 4000);
+            }
         }
     </script>
 </body>

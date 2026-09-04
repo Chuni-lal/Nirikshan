@@ -1,20 +1,16 @@
 /* ==========================================================================
    NIRĪKSHAN (निरीक्षण) — Official Legal Metrology Government Portal CSS
    Governing Authority: Department of Consumer Affairs (DoCA), Ministry of Consumer Affairs
-   Design Framework: National Informatics Centre (NIC) Standard UI Guidelines
+   Design Framework: IGOD (Integrated Government Online Directory) UI Standard
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400;600&display=swap');
 
 :root {
-  --nic-black: #0F172A;
-  --nic-top-gold: #FFD700;
-  --nic-maroon: #4A2E18;
-  --nic-maroon-hover: #3A2312;
-  --nic-navy: #1A365D;
-  --nic-navy-dark: #0F2444;
-  --nic-saffron: #E65100;
-  --nic-bg: #F8FAFC;
+  --nic-black: #0B1727;
+  --nic-top-blue: #1C64F2;
+  --nic-gov-blue: #006699;
+  --nic-bg: #FFFFFF;
   --nic-card-bg: #FFFFFF;
   --nic-border: #E2E8F0;
   --nic-text-dark: #1E293B;
@@ -28,8 +24,13 @@
   --badge-amber-bg: #FEF3C7;
   --badge-amber-text: #D97706;
 
-  /* Font scaling defaults */
-  --base-font-size: 14px;
+  /* Font scaling defaults (Increased for effortless readability) */
+  --base-font-size: 16px;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -39,9 +40,9 @@ html {
 
 body {
   font-family: Arial, Helvetica, "Noto Sans", sans-serif;
-  background-color: var(--nic-bg);
+  background-color: #FFFFFF;
   color: var(--nic-text-dark);
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -55,52 +56,223 @@ body {
 }
 
 /* ==========================================================================
-   ANIMATED APP LOGO & SVG RETICLE ANIMATIONS
+   SIH26034 WATERMARK STYLING (Top Right Faded + Asterisk)
    ========================================================================== */
-@keyframes logoPulseGlow {
-  0%, 100% {
-    transform: scale(1);
-    filter: drop-shadow(0 2px 6px rgba(26, 54, 93, 0.2));
-  }
-  50% {
-    transform: scale(1.04);
-    filter: drop-shadow(0 4px 14px rgba(255, 215, 0, 0.5));
-  }
+.sih-watermark-topright {
+  opacity: 0.65;
+  color: #94A3B8;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+.sih-watermark-topright:hover {
+  opacity: 1;
+  color: #FFD700;
 }
 
-.animated-top-logo {
-  animation: logoPulseGlow 3.5s ease-in-out infinite;
-}
-
-@keyframes reticleRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes ringPulse {
-  0%, 100% { stroke-opacity: 0.6; stroke-dashoffset: 0; }
-  50% { stroke-opacity: 1; stroke-dashoffset: 14; }
-}
-
-.svg-animated-reticle {
-  transform-origin: 50px 50px;
-  animation: reticleRotate 24s linear infinite;
-}
-
-.svg-animated-ring {
-  animation: ringPulse 3.5s ease-in-out infinite;
+.sih-watermark-footer {
+  background-color: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: #FFD700;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  display: inline-block;
 }
 
 /* ==========================================================================
-   HERO BACKGROUND (Faded India Gate Backdrop)
+   HERO SCANNING WORKBENCH CARD (Center of Attraction Highlight)
    ========================================================================== */
-.hero-bg-overlay {
+.workbench-main-card {
+  background-color: #FFFFFF;
+  border: 2.5px solid #006699;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px -5px rgba(0, 102, 153, 0.2), 0 8px 12px -6px rgba(0, 102, 153, 0.1);
   position: relative;
-  background-color: #0c1a2e;
-  background-image: linear-gradient(rgba(15, 36, 68, 0.88), rgba(12, 26, 46, 0.94)), url('/assets/indiagate.jpg');
+  transition: all 0.3s ease;
+}
+
+.workbench-main-card:hover {
+  box-shadow: 0 16px 36px -4px rgba(0, 102, 153, 0.28);
+}
+
+.workbench-header-strip {
+  background: linear-gradient(135deg, #006699 0%, #004466 100%);
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+/* Rule Pill Boxes (Screenshot 20-15-10 Refinement) */
+.rule-pill-box {
+  background-color: #F8FAFC;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #1E293B;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.rule-pill-box:hover {
+  border-color: #006699;
+  background-color: #F0F7FF;
+  color: #006699;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   HERO BANNER SECTION (IGOD Style with banner-inner.jpg)
+   ========================================================================== */
+.hero-banner-igod {
+  position: relative;
+  background-image: url('/assets/banner-inner.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   background-repeat: no-repeat;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1rem 4.5rem 1rem;
+}
+
+.hero-search-capsule {
+  background: #FFFFFF;
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  padding: 4px 6px 4px 16px;
+  width: 100%;
+  max-width: 680px;
+  border: 1.5px solid #006699;
+}
+
+.hero-search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  color: #1E293B;
+  background: transparent;
+  padding: 8px;
+}
+
+.hero-search-btn {
+  background-color: transparent;
+  color: #006699;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.hero-search-btn:hover {
+  color: #004466;
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   PM MODI QUOTE CARD (india.gov.in exact style)
+   ========================================================================== */
+.quote-card-wrapper {
+  position: relative;
+  max-width: 820px;
+  margin: -40px auto 20px auto;
+  padding: 0 1rem;
+  z-index: 20;
+}
+
+.quote-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 1.6rem;
+  gap: 1.25rem;
+}
+
+.quote-avatar {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: 3px solid #FFFFFF;
+  background-color: #FFFFFF;
+}
+
+.quote-text {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.quote-symbol {
+  color: #DC2626;
+  font-size: 1.35rem;
+  font-weight: bold;
+  display: inline;
+}
+
+.quote-attribution {
+  font-size: 0.82rem;
+  color: #64748B;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   NAV BAR PILL CONTAINER (igod.gov.in exact style)
+   ========================================================================== */
+.nav-pill-container {
+  border: 1.5px solid #006699;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FFFFFF;
+  max-width: 100%;
+}
+
+.nav-pill-link {
+  color: #006699;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-pill-link:hover,
+.nav-pill-link.active {
+  background-color: #006699;
+  color: #FFFFFF;
 }
 
 /* High Contrast Mode */
@@ -119,85 +291,36 @@ body.high-contrast .bg-white {
   color: #FFFFFF !important;
 }
 
-body.high-contrast .text-gray-700,
-body.high-contrast .text-gray-800,
-body.high-contrast .text-gray-900 {
+body.high-contrast .quote-card {
+  background-color: #1A1A1A !important;
   color: #FFFFFF !important;
+  border-color: #444444 !important;
 }
 
-body.high-contrast .text-gray-600,
-body.high-contrast .text-gray-500 {
-  color: #CBD5E1 !important;
-}
-
-body.high-contrast .hero-bg-overlay {
-  background-image: none !important;
-  background-color: #000000 !important;
+body.high-contrast .quote-text {
+  color: #E2E8F0 !important;
 }
 
 /* Font Scaling Classes */
-body.font-sm { --base-font-size: 12px; }
-body.font-md { --base-font-size: 14px; }
-body.font-lg { --base-font-size: 16px; }
-
-/* ==========================================================================
-   Header & Utility Navigation
-   ========================================================================== */
-.top-utility-bar {
-  background-color: var(--nic-black);
-  color: #FFFFFF;
-}
-
-.top-utility-bar a,
-.top-utility-bar button {
-  color: #FFFFFF;
-  transition: color 0.15s ease-in-out;
-}
-
-.top-utility-bar button:hover,
-.top-utility-bar a:hover {
-  color: var(--nic-top-gold);
-}
-
-.main-header-nav {
-  background-color: var(--nic-maroon);
-}
-
-.nav-link-item {
-  color: #FFFFFF;
-  padding: 0.65rem 1.2rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-}
-
-.nav-link-item:hover,
-.nav-link-item.active {
-  background-color: var(--nic-maroon-hover);
-  color: #FFFFFF;
-  border-bottom-color: var(--nic-top-gold);
-}
+body.font-sm { --base-font-size: 14px; }
+body.font-md { --base-font-size: 16px; }
+body.font-lg { --base-font-size: 18px; }
 
 /* ==========================================================================
    Government Cards & Data Grids
    ========================================================================== */
 .gov-card {
-  background-color: var(--nic-card-bg);
+  background-color: #FFFFFF;
   border: 1px solid var(--nic-border);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
 }
 
 .gov-card-header {
-  border-top: 4px solid var(--nic-navy);
+  border-top: 4px solid #006699;
 }
 
-/* Statutory Audit Badges */
+/* Audit Status Badges */
 .badge-compliant {
   background-color: var(--badge-green-bg);
   color: var(--badge-green-text);
@@ -223,22 +346,22 @@ body.font-lg { --base-font-size: 16px; }
 .gov-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .gov-table th {
-  background-color: #1A365D;
+  background-color: #006699;
   color: #FFFFFF;
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   letter-spacing: 0.05em;
-  padding: 0.75rem 1rem;
+  padding: 0.9rem 1rem;
   text-align: left;
 }
 
 .gov-table td {
-  padding: 0.75rem 1rem;
+  padding: 0.9rem 1rem;
   border-bottom: 1px solid var(--nic-border);
 }
 
@@ -254,33 +377,19 @@ body.high-contrast .gov-table tbody tr:nth-child(even) {
   background-color: #F1F5F9;
 }
 
-body.high-contrast .gov-table tbody tr:hover {
-  background-color: #2A2A2A;
-}
-
 /* File Upload Dropzone */
 .dropzone-box {
-  border: 2px dashed #94A3B8;
-  background-color: #F8FAFC;
+  border: 2.5px dashed #006699;
+  background-color: #F0F7FF;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .dropzone-box:hover,
 .dropzone-box.dragover {
-  border-color: var(--nic-navy);
-  background-color: #EFF6FF;
-}
-
-/* Bottom Faded Vector Border Styling */
-.explore-bharat-border {
-  background-image: url('/assets/ExploreBharatBGRightVector.png');
-  background-repeat: repeat-x;
-  background-position: bottom right;
-  height: 28px;
-  width: 100%;
-  opacity: 0.65;
-  filter: contrast(0.9);
+  border-color: #004466;
+  background-color: #E1F0FF;
+  box-shadow: 0 0 12px rgba(0, 102, 153, 0.2);
 }
 
 /* Modal Backdrop & Dialog */
@@ -299,15 +408,107 @@ body.high-contrast .gov-table tbody tr:hover {
   display: flex;
 }
 
-/* Print Stylesheet for Inspection Proof */
-@media print {
-  .top-utility-bar,
-  .main-header-nav,
-  .no-print {
-    display: none !important;
+/* ==========================================================================
+   FOOTER STYLING
+   ========================================================================== */
+.footer-top-links-bar {
+  background-color: #F1F5F9;
+  border-top: 1px solid #CBD5E1;
+  border-bottom: 1px solid #CBD5E1;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #006699;
+}
+
+.footer-top-links-bar a {
+  color: #006699;
+  text-decoration: none;
+  padding: 0 0.5rem;
+}
+
+.footer-top-links-bar a:hover {
+  text-decoration: underline;
+}
+
+.footer-main-dark {
+  background-color: #1F2D3D;
+  color: #E2E8F0;
+  padding: 2.2rem 1rem;
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-divider-line {
+  width: 1px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Social Media Icons for Contact Us Section */
+.social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.social-fb { background-color: #1877F2; }
+.social-x { background-color: #000000; }
+.social-yt { background-color: #FF0000; }
+.social-ig { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+
+/* Mobile Responsiveness Rules */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
   }
-  body {
-    background-color: #FFFFFF !important;
-    color: #000000 !important;
+  .hero-banner-igod {
+    min-height: 240px;
+    padding: 1.5rem 1rem 3.5rem 1rem;
+  }
+  .hero-search-capsule {
+    max-width: 100%;
+  }
+  .quote-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem 1rem;
+  }
+  .quote-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+  .nav-pill-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .nav-pill-link {
+    font-size: 0.78rem;
+    padding: 3px 8px;
+  }
+  .footer-logo-row {
+    flex-direction: flex-row;
+    gap: 1rem;
   }
 }
