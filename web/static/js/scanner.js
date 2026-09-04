@@ -178,22 +178,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const report = data.compliance_report;
         const isCompliant = report.overall_status === 'COMPLIANT';
 
-        // Verdict Banner Setup
+        // Set Results Panel Border & Glow based on Verdict
+        if (resultsPanel) {
+            resultsPanel.className = isCompliant 
+                ? 'space-y-6 border-4 border-emerald-500 ring-4 ring-emerald-300/30 rounded-2xl p-4 sm:p-5 bg-emerald-50/10 shadow-2xl transition-all duration-500' 
+                : 'space-y-6 border-4 border-rose-600 ring-4 ring-rose-300/30 rounded-2xl p-4 sm:p-5 bg-rose-50/10 shadow-2xl transition-all duration-500';
+        }
+
+        // Verdict Banner Setup with Thick Green/Red Borders
         verdictStatus.textContent = isCompliant ? 'COMPLIANT (100%)' : `STATUTORY INFRACTION DETECTED`;
         inspectionIdBadge.textContent = `#${data.scan_id}`;
 
         if (isCompliant) {
-            verdictBanner.className = 'rounded-lg p-4 text-white shadow-md flex items-center justify-between bg-[#1E7E34] border-l-8 border-green-300';
+            verdictBanner.className = 'rounded-xl p-4 text-white shadow-xl flex items-center justify-between bg-[#1E7E34] border-4 border-emerald-400 ring-4 ring-emerald-300/40 font-bold';
             verdictIcon.innerHTML = `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>`;
         } else {
-            verdictBanner.className = 'rounded-lg p-4 text-white shadow-md flex items-center justify-between bg-[#C53030] border-l-8 border-red-300';
+            verdictBanner.className = 'rounded-xl p-4 text-white shadow-xl flex items-center justify-between bg-[#C53030] border-4 border-rose-400 ring-4 ring-rose-300/40 font-bold';
             verdictIcon.innerHTML = `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>`;
         }
 
-        // Set Evidence Image
+        // Set Evidence Image with Solid Green Border (PASS) or Red Border (FAIL)
         evidenceImage.src = data.evidence_image || data.pdf_report;
+        evidenceImage.className = isCompliant
+            ? 'max-h-80 w-auto mx-auto rounded-xl border-4 border-emerald-500 ring-4 ring-emerald-300/40 shadow-xl p-1 bg-emerald-50 transition-all'
+            : 'max-h-80 w-auto mx-auto rounded-xl border-4 border-rose-600 ring-4 ring-rose-300/40 shadow-xl p-1 bg-rose-50 transition-all';
 
-        // Render Key Extracted Declarations Summary Grid
+        // Render Key Extracted Declarations Summary Grid with Green / Red Borders
         const grid = document.getElementById('structured-declarations-grid');
         if (grid && report.structured_declarations) {
             const sd = report.structured_declarations;
@@ -208,12 +218,17 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.innerHTML = items.map(i => {
                 const detected = i.val && i.val !== 'NOT DETECTED';
                 return `
-                    <div class="p-2.5 rounded border ${detected ? 'bg-blue-50/50 border-blue-200' : 'bg-gray-50 border-gray-200'}">
-                        <div class="font-bold text-gray-700 text-[11px] flex items-center gap-1">
-                            <span>${i.icon}</span>
-                            <span>${i.label}</span>
+                    <div class="p-2.5 rounded-lg border ${detected ? 'bg-emerald-50/70 border-emerald-500 shadow-sm' : 'bg-rose-50/70 border-rose-500 shadow-sm'}">
+                        <div class="font-bold text-gray-800 text-[11px] flex items-center justify-between">
+                            <span class="flex items-center gap-1">
+                                <span>${i.icon}</span>
+                                <span>${i.label}</span>
+                            </span>
+                            <span class="text-[10px] font-black px-1.5 py-0.5 rounded ${detected ? 'bg-emerald-100 text-emerald-900 border border-emerald-500' : 'bg-rose-100 text-rose-900 border border-rose-500'}">
+                                ${detected ? '✓ DETECTED' : '✕ NOT DETECTED'}
+                            </span>
                         </div>
-                        <div class="font-mono text-xs mt-1 ${detected ? 'text-[#1A365D] font-bold' : 'text-gray-400 italic'}">
+                        <div class="font-mono text-xs mt-1.5 ${detected ? 'text-[#1A365D] font-bold' : 'text-rose-700 italic font-semibold'}">
                             ${detected ? i.val : 'Not Detected'}
                         </div>
                     </div>
@@ -221,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join('');
         }
 
-        // Render Statutory Audit Matrix (6 Mandatory Clauses)
+        // Render Statutory Audit Matrix (6 Mandatory Clauses) with Explicit PASS (Green Border) / FAIL (Red Border)
         rulesMatrixTbody.innerHTML = '';
         if (report.rule_results && report.rule_results.length > 0) {
             report.rule_results.forEach(r => {
@@ -239,8 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </td>
                     <td class="text-xs font-mono">${snippets}</td>
                     <td>
-                        <span class="px-2 py-0.5 rounded text-xs font-extrabold ${isPass ? 'badge-compliant' : 'badge-infraction'}">
-                            ${r.status}
+                        <span class="px-2.5 py-1 rounded-md text-xs font-black shadow-sm ${isPass ? 'badge-compliant border-2 border-emerald-500 bg-emerald-50 text-emerald-900' : 'badge-infraction border-2 border-rose-500 bg-rose-50 text-rose-900'}">
+                            ${isPass ? '✓ PASS' : '✕ FAIL'}
                         </span>
                     </td>
                 `;

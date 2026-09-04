@@ -56,6 +56,54 @@ body {
 }
 
 /* ==========================================================================
+   METALLIC SHIMMER ANIMATION FOR NIRĪKSHAN TEXT
+   ========================================================================== */
+.nirikshan-shimmer-text {
+  background: linear-gradient(
+    110deg,
+    #006699 0%,
+    #006699 35%,
+    #E2E8F0 48%,
+    #FFFFFF 50%,
+    #E2E8F0 52%,
+    #006699 65%,
+    #006699 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallicShimmer 3.5s infinite linear;
+  display: inline-block;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .nirikshan-shimmer-text {
+  background: linear-gradient(
+    110deg,
+    #38BDF8 0%,
+    #38BDF8 35%,
+    #FFFFFF 48%,
+    #93C5FD 50%,
+    #FFFFFF 52%,
+    #38BDF8 65%,
+    #38BDF8 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes metallicShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+/* ==========================================================================
    SIH26034 WATERMARK STYLING (Top Right Faded + Asterisk)
    ========================================================================== */
 .sih-watermark-topright {
@@ -138,14 +186,16 @@ body {
   position: relative;
   background-image: url('/assets/banner-inner.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
-  min-height: 320px;
+  min-height: 420px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2.5rem 1rem 4.5rem 1rem;
+  padding: 3.5rem 1.5rem 5.5rem 1.5rem;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.22);
 }
 
 .hero-search-capsule {
@@ -322,17 +372,19 @@ body.font-lg { --base-font-size: 18px; }
 
 /* Audit Status Badges */
 .badge-compliant {
-  background-color: var(--badge-green-bg);
-  color: var(--badge-green-text);
-  border: 1px solid #A7F3D0;
-  font-weight: 700;
+  background-color: #ECFDF5;
+  color: #047857;
+  border: 2px solid #10B981 !important;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.25);
 }
 
 .badge-infraction {
-  background-color: var(--badge-red-bg);
-  color: var(--badge-red-text);
-  border: 1px solid #FCA5A5;
-  font-weight: 700;
+  background-color: #FEF2F2;
+  color: #B91C1C;
+  border: 2px solid #EF4444 !important;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(239, 68, 68, 0.25);
 }
 
 .badge-warning {
@@ -507,8 +559,141 @@ body.high-contrast .gov-table tbody tr:nth-child(even) {
     font-size: 0.78rem;
     padding: 3px 8px;
   }
-  .footer-logo-row {
-    flex-direction: flex-row;
-    gap: 1rem;
+  .doca-header-logo {
+    height: 32px !important;
+    width: auto !important;
+  }
+  .header-divider {
+    height: 24px !important;
+  }
+  .nirikshan-shimmer-text {
+    font-size: 1.25rem !important;
   }
 }
+
+/* ==========================================================================
+   DARK MODE COMPREHENSIVE STYLING & HIGH CONTRAST
+   ========================================================================== */
+body.dark-mode {
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
+}
+
+body.dark-mode div.bg-white,
+body.dark-mode header.bg-white,
+body.dark-mode section.bg-white,
+body.dark-mode main.bg-white {
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
+}
+
+body.dark-mode .bg-gray-50,
+body.dark-mode .bg-gray-100 {
+  background-color: #0F172A !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .text-gray-900,
+body.dark-mode .text-gray-800,
+body.dark-mode .text-gray-700,
+body.dark-mode .text-[#1E293B] {
+  color: #F8FAFC !important;
+}
+
+body.dark-mode .text-gray-600,
+body.dark-mode .text-gray-500 {
+  color: #CBD5E1 !important;
+}
+
+body.dark-mode .border-gray-200,
+body.dark-mode .border-gray-300 {
+  border-color: #334155 !important;
+}
+
+body.dark-mode .workbench-main-card {
+  background-color: #1E293B !important;
+  border-color: #3B82F6 !important;
+  box-shadow: 0 0 35px rgba(59, 130, 246, 0.4) !important;
+}
+
+body.dark-mode .dropzone-box {
+  background-color: #0F172A !important;
+  border-color: #3B82F6 !important;
+}
+
+body.dark-mode .quote-card {
+  background-color: #1E293B !important;
+  border-color: #006699 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .quote-text {
+  color: #F1F5F9 !important;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
+  border-color: #475569 !important;
+}
+
+body.dark-mode input[type="text"]::placeholder {
+  color: #64748B !important;
+}
+
+body.dark-mode .nav-pill-container {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .nav-pill-link {
+  color: #CBD5E1 !important;
+}
+
+body.dark-mode .nav-pill-link:hover,
+body.dark-mode .nav-pill-link.active {
+  background-color: #006699 !important;
+  color: #FFFFFF !important;
+}
+
+body.dark-mode .modal-content {
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
+  border-color: #475569 !important;
+}
+
+body.dark-mode .rule-detail-card {
+  background-color: #1E293B !important;
+  border: 1px solid #334155 !important;
+  color: #F8FAFC !important;
+}
+
+body.dark-mode .rule-detail-card:hover {
+  border-color: #3B82F6 !important;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* High-visibility Blue Text & Accents in Dark Mode */
+body.dark-mode .text-\[\#006699\],
+body.dark-mode a.text-\[\#006699\],
+body.dark-mode h1.text-\[\#006699\],
+body.dark-mode h2.text-\[\#006699\],
+body.dark-mode h3.text-\[\#006699\],
+body.dark-mode h4.text-\[\#006699\],
+body.dark-mode span.text-\[\#006699\],
+body.dark-mode div.text-\[\#006699\] {
+  color: #38BDF8 !important;
+}
+
+body.dark-mode .bg-\[\#006699\]\/5,
+body.dark-mode .bg-\[\#006699\]\/10 {
+  background-color: rgba(56, 189, 248, 0.15) !important;
+}
+
+body.dark-mode .border-\[\#006699\] {
+  border-color: #38BDF8 !important;
+}
+
+

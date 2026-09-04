@@ -41,6 +41,11 @@
                 <button id="lang-btn" onclick="toggleLanguage()" class="bg-[#006699] border border-blue-400 text-white px-2 py-0.5 rounded font-bold text-[11px] hover:bg-blue-800">
                     English / हिन्दी
                 </button>
+                <!-- Dedicated Dark / Light Mode Toggle Button -->
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="border border-yellow-500/50 bg-gray-900 text-yellow-300 hover:bg-black px-2.5 py-0.5 rounded font-bold text-[11px] flex items-center gap-1 transition shadow-sm" title="Toggle Light / Dark Mode">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text">Dark Mode</span>
+                </button>
                 <!-- Top Right Faded Watermark with Asterisk -->
                 <span class="sih-watermark-topright border-l border-gray-700 pl-2.5" title="SIH26034 Official Prototype">* SIH26034</span>
             </div>
@@ -57,13 +62,21 @@
             <div class="flex items-center gap-2.5 sm:gap-3.5 max-w-full">
                 <a href="/" class="flex items-center gap-2.5 sm:gap-3 group max-w-full">
                     <img src="/assets/Logo.png" alt="Department of Consumer Affairs Official Seal" 
-                         class="h-11 sm:h-13 w-auto flex-shrink-0 transition transform group-hover:scale-105" />
+                         class="doca-header-logo h-10 sm:h-13 w-auto flex-shrink-0 transition transform group-hover:scale-105" />
                     
-                    <div class="h-9 sm:h-10 border-l border-gray-300 flex-shrink-0"></div>
+                    <div class="header-divider h-7 sm:h-10 border-l border-gray-300 flex-shrink-0"></div>
                     
                     <div class="min-w-0">
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                            <span class="text-2xl sm:text-3xl font-black text-[#006699] tracking-wider leading-none">NIRĪKSHAN</span>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <!-- Animated Inspection Badge Logo -->
+                            <div class="relative flex items-center justify-center flex-shrink-0">
+                                <span class="absolute inline-flex h-6 w-6 rounded-full bg-[#006699]/30 animate-ping"></span>
+                                <div class="relative w-6 sm:w-7 h-6 sm:h-7 bg-gradient-to-tr from-[#003366] to-[#006699] rounded-lg shadow-sm flex items-center justify-center text-white border border-blue-400/40">
+                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                            </div>
+
+                            <span class="nirikshan-shimmer-text text-2xl sm:text-3xl font-black tracking-wider leading-none">NIRĪKSHAN</span>
                             <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-1.5 py-0.5 rounded border border-gray-300">* SIH26034</span>
                         </div>
                         <div class="text-xs sm:text-sm font-bold text-gray-800 leading-tight mt-0.5 truncate">
@@ -81,6 +94,7 @@
                 <div class="nav-pill-container">
                     <a href="/" class="nav-pill-link active">HOME</a>
                     <a href="#scanner-workbench" class="nav-pill-link">SCANNER</a>
+                    <a href="javascript:void(0)" onclick="openRulesDirectoryModal()" class="nav-pill-link">METROLOGY RULES</a>
                     <a href="/dashboard" class="nav-pill-link">DASHBOARD</a>
                     <a href="javascript:void(0)" onclick="openHelpModal()" class="nav-pill-link">HELP</a>
                     <a href="javascript:void(0)" onclick="openAboutModal()" class="nav-pill-link">ABOUT US</a>
@@ -527,6 +541,180 @@
          9. INTERACTIVE MODALS (Help, Sitemap, Policies, Feedback, About Us, Rules)
          ========================================================================== -->
     
+    <!-- 0. Legal Metrology Rules Directory Pop-up Modal -->
+    <div id="rules-directory-modal" class="gov-modal">
+        <div class="gov-card max-w-5xl w-full max-h-[90vh] flex flex-col p-6 space-y-4 shadow-2xl border-2 border-[#006699] rounded-2xl">
+            
+            <div class="flex justify-between items-center border-b pb-3.5 border-gray-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-[#006699]/10 text-[#006699] rounded-xl flex items-center justify-center text-xl font-bold">📜</div>
+                    <div>
+                        <h3 class="text-xl font-black text-[#006699]">Legal Metrology (Packaged Commodities) Rules, 2011</h3>
+                        <p class="text-xs text-gray-500 font-semibold">Mandatory Statutory Declarations, Rule Clauses & Consumer Awareness Guide (DoCA)</p>
+                    </div>
+                </div>
+                <button onclick="closeRulesDirectoryModal()" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xl flex items-center justify-center transition">&times;</button>
+            </div>
+
+            <!-- Rules Grid Container (Scrollable) -->
+            <div class="overflow-y-auto space-y-5 pr-1 text-xs sm:text-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                    <!-- Rule 6(1)(a) -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 6(1)(a)</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Name & Address of Manufacturer / Packer / Importer</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> Complete postal address with pincode of the manufacturer, packer, or importer.</p>
+                            <p><strong>Consumer Meaning:</strong> Fixes legal accountability and enables consumers to trace product origin.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Validates address line, PIN code, and registered entity name via OCR.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 6(1)(b) -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 6(1)(b)</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Generic or Common Name of Commodity</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> Generic or common name of the commodity contained inside.</p>
+                            <p><strong>Consumer Meaning:</strong> Prevents deceptive brand names masking true composition.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Matches title with official FSSAI & Legal Metrology lists.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 6(1)(c) -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 6(1)(c)</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Net Quantity Declaration & Standard SI Units</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> Net weight/volume/count in SI metric units (`g`, `kg`, `ml`, `L`, `N`).</p>
+                            <p><strong>Consumer Meaning:</strong> Guarantees consumers get exact measure paid for without ambiguous shorthand (`gms`, `kilos`).</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Validates numeric weight, unit symbol, and font height ratio.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 6(1)(d) -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 6(1)(d)</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Date of Mfg / Packing / Import & Expiry</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> Month and year of packing/import + mandatory Expiry date for food items.</p>
+                            <p><strong>Consumer Meaning:</strong> Protects consumers from consuming expired or stale products.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Extracts `MM/YYYY` format and checks remaining shelf life.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 6(1)(e) -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 6(1)(e)</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Maximum Retail Price (MRP) & Unit Sale Price (USP)</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> "MRP ₹ xx.xx (inclusive of all taxes)" + mandatory Unit Sale Price.</p>
+                            <p><strong>Consumer Meaning:</strong> Prevents overcharging over printed MRP and enables cost comparison across pack sizes.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Verifies tax inclusion phrase, MRP limits, and USP calculation.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 6(1)(f) -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 6(1)(f)</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Country of Origin Declaration</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> Compulsory explicit statement of "Country of Origin" for imported packages.</p>
+                            <p><strong>Consumer Meaning:</strong> Full transparency on product origin for informed decision-making.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Flags missing country of origin tags on imported goods.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 6(1)(n) -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 6(1)(n)</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Customer Care & Grievance Contact Details</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> Name, address, helpline telephone number, and email of grievance officer.</p>
+                            <p><strong>Consumer Meaning:</strong> Direct helpline channel for complaints regarding defective goods.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Validates email syntax, 10-digit helpline phone, and address.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 7 & Rule 8 -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-blue-100 text-[#006699] rounded border border-blue-200">Rule 7 & 8</span>
+                            <span class="text-[11px] font-bold text-gray-500">PCR 2011</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">Minimum Font & Letter Height Ratios</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> Minimum letter height based on package surface area (1mm up to 6mm).</p>
+                            <p><strong>Consumer Meaning:</strong> Prevents printing mandatory warnings in unreadable microscopic text.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Bounding box DPI measurement for statutory text letter height.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FSSAI Cross Mandate -->
+                    <div class="rule-detail-card p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold px-2 py-0.5 bg-green-100 text-green-800 rounded border border-green-200">FSSAI Mandate</span>
+                            <span class="text-[11px] font-bold text-gray-500">Food Safety</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-900">FSSAI License No. & Veg / Non-Veg Logo</h4>
+                        <div class="text-xs space-y-1.5 text-gray-600">
+                            <p><strong>Statutory Clause:</strong> 14-digit FSSAI License Number and green dot (Veg) / brown dot (Non-Veg) symbol.</p>
+                            <p><strong>Consumer Meaning:</strong> Verifies food safety authorization and dietary preferences.</p>
+                            <div class="bg-gray-50 p-2 rounded border border-gray-200 font-mono text-[11px] text-gray-700">
+                                <strong>Nirīkshan Check:</strong> Validates 14-digit FSSAI number and detects dietary dot symbol.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="border-t pt-3 flex justify-between items-center">
+                <span class="text-xs font-bold text-gray-500">Department of Consumer Affairs • Legal Metrology Division</span>
+                <button onclick="closeRulesDirectoryModal()" class="px-5 py-2 bg-[#006699] text-white font-bold rounded-lg text-xs hover:bg-blue-800 transition shadow">Close Window</button>
+            </div>
+
+        </div>
+    </div>
+
     <!-- 1. Help & User Guide Modal -->
     <div id="help-modal" class="gov-modal">
         <div class="gov-card max-w-3xl w-full max-h-[88vh] flex flex-col p-6 space-y-4">
@@ -818,6 +1006,32 @@
     <script src="/static/js/scanner.js"></script>
 
     <script>
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('nirikshan-theme', isDark ? 'dark' : 'light');
+            updateThemeUI(isDark);
+        }
+
+        function updateThemeUI(isDark) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (icon && text) {
+                icon.innerText = isDark ? '☀️' : '🌙';
+                text.innerText = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+        }
+
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('nirikshan-theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark-mode');
+                updateThemeUI(true);
+            } else {
+                document.body.classList.remove('dark-mode');
+                updateThemeUI(false);
+            }
+        })();
+
         function toggleHighContrast() {
             document.body.classList.toggle('high-contrast');
         }
@@ -832,6 +1046,12 @@
             } else if (btn) {
                 btn.innerText = 'English / हिन्दी';
             }
+        }
+        function openRulesDirectoryModal() {
+            document.getElementById('rules-directory-modal').classList.add('open');
+        }
+        function closeRulesDirectoryModal() {
+            document.getElementById('rules-directory-modal').classList.remove('open');
         }
         function openRulesModal() {
             document.getElementById('rules-modal').classList.add('open');

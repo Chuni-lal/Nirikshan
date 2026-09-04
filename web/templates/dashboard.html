@@ -37,6 +37,11 @@
                 <button id="lang-btn" onclick="toggleLanguage()" class="bg-[#006699] border border-blue-400 text-white px-2 py-0.5 rounded font-bold text-[11px]">
                     English / हिन्दी
                 </button>
+                <!-- Dedicated Dark / Light Mode Toggle Button -->
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="border border-yellow-500/50 bg-gray-900 text-yellow-300 hover:bg-black px-2.5 py-0.5 rounded font-bold text-[11px] flex items-center gap-1 transition shadow-sm" title="Toggle Light / Dark Mode">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text">Dark Mode</span>
+                </button>
                 <span class="sih-watermark-topright border-l border-gray-700 pl-2.5" title="SIH26034 Official Prototype">* SIH26034</span>
             </div>
         </div>
@@ -52,13 +57,21 @@
             <div class="flex items-center gap-2.5 sm:gap-3.5 max-w-full">
                 <a href="/" class="flex items-center gap-2.5 sm:gap-3 group max-w-full">
                     <img src="/assets/Logo.png" alt="Department of Consumer Affairs Official Seal" 
-                         class="h-11 sm:h-13 w-auto flex-shrink-0 transition transform group-hover:scale-105" />
+                         class="doca-header-logo h-10 sm:h-13 w-auto flex-shrink-0 transition transform group-hover:scale-105" />
                     
-                    <div class="h-9 sm:h-10 border-l border-gray-300 flex-shrink-0"></div>
+                    <div class="header-divider h-7 sm:h-10 border-l border-gray-300 flex-shrink-0"></div>
                     
                     <div class="min-w-0">
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                            <span class="text-2xl sm:text-3xl font-black text-[#006699] tracking-wider leading-none">NIRĪKSHAN</span>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <!-- Animated Inspection Badge Logo -->
+                            <div class="relative flex items-center justify-center flex-shrink-0">
+                                <span class="absolute inline-flex h-6 w-6 rounded-full bg-[#006699]/30 animate-ping"></span>
+                                <div class="relative w-6 sm:w-7 h-6 sm:h-7 bg-gradient-to-tr from-[#003366] to-[#006699] rounded-lg shadow-sm flex items-center justify-center text-white border border-blue-400/40">
+                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                            </div>
+
+                            <span class="nirikshan-shimmer-text text-2xl sm:text-3xl font-black tracking-wider leading-none">NIRĪKSHAN</span>
                             <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-1.5 py-0.5 rounded border border-gray-300">* SIH26034</span>
                         </div>
                         <div class="text-xs sm:text-sm font-bold text-gray-800 leading-tight mt-0.5 truncate">
@@ -515,6 +528,32 @@
     <script src="/static/js/dashboard.js"></script>
 
     <script>
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('nirikshan-theme', isDark ? 'dark' : 'light');
+            updateThemeUI(isDark);
+        }
+
+        function updateThemeUI(isDark) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (icon && text) {
+                icon.innerText = isDark ? '☀️' : '🌙';
+                text.innerText = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+        }
+
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('nirikshan-theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark-mode');
+                updateThemeUI(true);
+            } else {
+                document.body.classList.remove('dark-mode');
+                updateThemeUI(false);
+            }
+        })();
+
         function toggleHighContrast() {
             document.body.classList.toggle('high-contrast');
         }
