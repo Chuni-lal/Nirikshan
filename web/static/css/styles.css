@@ -30,6 +30,7 @@
 
 html, body {
   max-width: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -131,32 +132,6 @@ body.dark-mode .nirikshan-shimmer-text {
   border-radius: 4px;
   font-size: 11.5px;
   display: inline-block;
-/* Sticky Institutional Header (Utility Bar + Logo + Navigation Bar) */
-.sticky-top-header {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  width: 100%;
-  background-color: #FFFFFF;
-}
-
-body.dark-mode .sticky-top-header {
-  background-color: #1E293B !important;
-}
-
-.main-institutional-header {
-  position: relative;
-  z-index: 100;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #E2E8F0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-}
-
-body.dark-mode .main-institutional-header {
-  background-color: #1E293B !important;
-  border-bottom: 1px solid #334155 !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 /* ==========================================================================
@@ -553,6 +528,9 @@ body.high-contrast .gov-table tbody tr:nth-child(even) {
 
 /* Mobile Responsiveness Rules */
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
   .hero-banner-igod {
     min-height: 240px;
     padding: 1.5rem 1rem 3.5rem 1rem;

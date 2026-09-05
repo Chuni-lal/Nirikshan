@@ -10,100 +10,99 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-<body class="font-sans antialiased bg-white text-[#1E293B] max-w-full">
+<body class="font-sans antialiased bg-white text-[#1E293B] overflow-x-hidden max-w-full">
 
     <!-- ==========================================================================
-         STICKY TOP CONTAINER (Accessibility Bar + DoCA Logo + NIRĪKSHAN Logo + Nav Bar)
+         1. TOP ACCESSIBILITY UTILITY BAR (* SIH26034 Faded Top-Right Watermark)
          ========================================================================== -->
-    <div class="sticky-top-header">
-        <!-- 1. TOP ACCESSIBILITY UTILITY BAR (* SIH26034 Faded Top-Right Watermark) -->
-        <div class="top-utility-bar px-3 sm:px-4 py-1.5 text-xs font-semibold no-print bg-[#0B1727] text-white">
-            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-                <div class="flex items-center gap-2 text-gray-200">
-                    <a href="#main-content" class="hover:underline font-bold text-gray-100 text-xs">SKIP TO MAIN CONTENT</a>
+    <header class="top-utility-bar px-3 sm:px-4 py-1.5 text-xs font-semibold no-print bg-[#0B1727] text-white">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2 text-gray-200">
+                <a href="#main-content" class="hover:underline font-bold text-gray-100 text-xs">SKIP TO MAIN CONTENT</a>
+            </div>
+            <div class="flex items-center gap-2.5 sm:gap-3.5">
+                <!-- Sitemap Button -->
+                <button onclick="openSitemapModal()" class="hover:text-[#1C64F2] flex items-center gap-1" title="View Sitemap">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <span class="hidden xs:inline">Sitemap</span>
+                </button>
+                <!-- Text Size Controls -->
+                <div class="flex items-center bg-gray-800 rounded border border-gray-700 px-1">
+                    <button onclick="setFontSize('lg')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Increase Text Size">A+</button>
+                    <button onclick="setFontSize('md')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Reset Text Size">A</button>
+                    <button onclick="setFontSize('sm')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Decrease Text Size">A-</button>
                 </div>
-                <div class="flex items-center gap-2.5 sm:gap-3.5">
-                    <!-- Sitemap Button -->
-                    <button onclick="openSitemapModal()" class="hover:text-[#1C64F2] flex items-center gap-1" title="View Sitemap">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                        <span class="hidden xs:inline">Sitemap</span>
-                    </button>
-                    <!-- Text Size Controls -->
-                    <div class="flex items-center bg-gray-800 rounded border border-gray-700 px-1">
-                        <button onclick="setFontSize('lg')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Increase Text Size">A+</button>
-                        <button onclick="setFontSize('md')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Reset Text Size">A</button>
-                        <button onclick="setFontSize('sm')" class="px-1.5 py-0.5 hover:text-[#1C64F2]" title="Decrease Text Size">A-</button>
-                    </div>
-                    <!-- High Contrast Boxes -->
-                    <div class="flex items-center gap-1">
-                        <button onclick="toggleHighContrast()" class="w-4 h-4 bg-black border border-white rounded-sm text-[9px] font-bold flex items-center justify-center text-white" title="Black Contrast">A</button>
-                        <button onclick="toggleHighContrast()" class="w-4 h-4 bg-[#006699] border border-white rounded-sm text-[9px] font-bold flex items-center justify-center text-white" title="Blue Contrast">A</button>
-                    </div>
-                    <!-- Language Toggle -->
-                    <button id="lang-btn" onclick="toggleLanguage()" class="bg-[#006699] border border-blue-400 text-white px-2 py-0.5 rounded font-bold text-[11px] hover:bg-blue-800">
-                        English / हिन्दी
-                    </button>
-                    <!-- Dedicated Dark / Light Mode Toggle Button -->
-                    <button id="theme-toggle-btn" onclick="toggleTheme()" class="border border-yellow-500/50 bg-gray-900 text-yellow-300 hover:bg-black px-2.5 py-0.5 rounded font-bold text-[11px] flex items-center gap-1 transition shadow-sm" title="Toggle Light / Dark Mode">
-                        <span id="theme-icon">🌙</span>
-                        <span id="theme-text">Dark Mode</span>
-                    </button>
-                    <!-- Top Right Faded Watermark with Asterisk -->
-                    <span class="sih-watermark-topright border-l border-gray-700 pl-2.5" title="SIH26034 Official Prototype">* SIH26034</span>
+                <!-- High Contrast Boxes -->
+                <div class="flex items-center gap-1">
+                    <button onclick="toggleHighContrast()" class="w-4 h-4 bg-black border border-white rounded-sm text-[9px] font-bold flex items-center justify-center text-white" title="Black Contrast">A</button>
+                    <button onclick="toggleHighContrast()" class="w-4 h-4 bg-[#006699] border border-white rounded-sm text-[9px] font-bold flex items-center justify-center text-white" title="Blue Contrast">A</button>
                 </div>
+                <!-- Language Toggle -->
+                <button id="lang-btn" onclick="toggleLanguage()" class="bg-[#006699] border border-blue-400 text-white px-2 py-0.5 rounded font-bold text-[11px] hover:bg-blue-800">
+                    English / हिन्दी
+                </button>
+                <!-- Dedicated Dark / Light Mode Toggle Button -->
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="border border-yellow-500/50 bg-gray-900 text-yellow-300 hover:bg-black px-2.5 py-0.5 rounded font-bold text-[11px] flex items-center gap-1 transition shadow-sm" title="Toggle Light / Dark Mode">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text">Dark Mode</span>
+                </button>
+                <!-- Top Right Faded Watermark with Asterisk -->
+                <span class="sih-watermark-topright border-l border-gray-700 pl-2.5" title="SIH26034 Official Prototype">* SIH26034</span>
             </div>
         </div>
+    </header>
 
-        <!-- 2. MAIN INSTITUTIONAL STICKY HEADER (DoCA Logo + NIRĪKSHAN Logo + Nav Bar) -->
-        <header class="main-institutional-header py-3.5 px-3 md:px-8 no-print">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
-                
-                <!-- LEFT: DoCA Logo + NIRĪKSHAN Logo (Emblem Removed) -->
-                <div class="flex items-center gap-2.5 sm:gap-3.5 max-w-full">
-                    <a href="/" class="flex items-center gap-2.5 sm:gap-3 group max-w-full">
-                        <img src="/assets/Logo.png" alt="Department of Consumer Affairs Official Seal" 
-                             class="doca-header-logo h-10 sm:h-13 w-auto flex-shrink-0 transition transform group-hover:scale-105" />
-                        
-                        <div class="header-divider h-7 sm:h-10 border-l border-gray-300 flex-shrink-0"></div>
-                        
-                        <div class="min-w-0">
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <!-- Animated Inspection Badge Logo -->
-                                <div class="relative flex items-center justify-center flex-shrink-0">
-                                    <span class="absolute inline-flex h-6 w-6 rounded-full bg-[#006699]/30 animate-ping"></span>
-                                    <div class="relative w-6 sm:w-7 h-6 sm:h-7 bg-gradient-to-tr from-[#003366] to-[#006699] rounded-lg shadow-sm flex items-center justify-center text-white border border-blue-400/40">
-                                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                    </div>
+    <!-- ==========================================================================
+         2. MAIN INSTITUTIONAL HEADER (DoCA & NIRĪKSHAN Logos - No Emblem)
+         ========================================================================== -->
+    <div class="bg-white border-b border-gray-200 py-3.5 px-3 md:px-8 no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+            
+            <!-- LEFT: DoCA Logo + NIRĪKSHAN Logo (Emblem Removed) -->
+            <div class="flex items-center gap-2.5 sm:gap-3.5 max-w-full">
+                <a href="/" class="flex items-center gap-2.5 sm:gap-3 group max-w-full">
+                    <img src="/assets/Logo.png" alt="Department of Consumer Affairs Official Seal" 
+                         class="doca-header-logo h-10 sm:h-13 w-auto flex-shrink-0 transition transform group-hover:scale-105" />
+                    
+                    <div class="header-divider h-7 sm:h-10 border-l border-gray-300 flex-shrink-0"></div>
+                    
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <!-- Animated Inspection Badge Logo -->
+                            <div class="relative flex items-center justify-center flex-shrink-0">
+                                <span class="absolute inline-flex h-6 w-6 rounded-full bg-[#006699]/30 animate-ping"></span>
+                                <div class="relative w-6 sm:w-7 h-6 sm:h-7 bg-gradient-to-tr from-[#003366] to-[#006699] rounded-lg shadow-sm flex items-center justify-center text-white border border-blue-400/40">
+                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </div>
+                            </div>
 
-                                <span class="nirikshan-shimmer-text text-2xl sm:text-3xl font-black tracking-wider leading-none">NIRĪKSHAN</span>
-                                <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-1.5 py-0.5 rounded border border-gray-300">* SIH26034</span>
-                            </div>
-                            <div class="text-xs sm:text-sm font-bold text-gray-800 leading-tight mt-0.5 truncate">
-                                Packaged Commodity Compliance Auditor
-                            </div>
-                            <div class="text-[11px] text-gray-600 font-semibold italic leading-tight truncate">
-                                Department of Consumer Affairs (DoCA)
-                            </div>
+                            <span class="nirikshan-shimmer-text text-2xl sm:text-3xl font-black tracking-wider leading-none">NIRĪKSHAN</span>
+                            <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-1.5 py-0.5 rounded border border-gray-300">* SIH26034</span>
                         </div>
-                    </a>
-                </div>
-
-                <!-- RIGHT: Pill Navigation Container -->
-                <div class="flex items-center flex-shrink-0 max-w-full overflow-x-auto">
-                    <div class="nav-pill-container">
-                        <a href="/" class="nav-pill-link active">HOME</a>
-                        <a href="#scanner-workbench" class="nav-pill-link">SCANNER</a>
-                        <a href="javascript:void(0)" onclick="openRulesDirectoryModal()" class="nav-pill-link">METROLOGY RULES</a>
-                        <a href="/dashboard" class="nav-pill-link">DASHBOARD</a>
-                        <a href="javascript:void(0)" onclick="openHelpModal()" class="nav-pill-link">HELP</a>
-                        <a href="javascript:void(0)" onclick="openAboutModal()" class="nav-pill-link">ABOUT US</a>
-                        <a href="#contact-us" class="nav-pill-link">CONTACT</a>
+                        <div class="text-xs sm:text-sm font-bold text-gray-800 leading-tight mt-0.5 truncate">
+                            Packaged Commodity Compliance Auditor
+                        </div>
+                        <div class="text-[11px] text-gray-600 font-semibold italic leading-tight truncate">
+                            Department of Consumer Affairs (DoCA)
+                        </div>
                     </div>
-                </div>
-
+                </a>
             </div>
-        </header>
+
+            <!-- RIGHT: Pill Navigation Container -->
+            <div class="flex items-center flex-shrink-0 max-w-full overflow-x-auto">
+                <div class="nav-pill-container">
+                    <a href="/" class="nav-pill-link active">HOME</a>
+                    <a href="#scanner-workbench" class="nav-pill-link">SCANNER</a>
+                    <a href="javascript:void(0)" onclick="openRulesDirectoryModal()" class="nav-pill-link">METROLOGY RULES</a>
+                    <a href="/dashboard" class="nav-pill-link">DASHBOARD</a>
+                    <a href="javascript:void(0)" onclick="openHelpModal()" class="nav-pill-link">HELP</a>
+                    <a href="javascript:void(0)" onclick="openAboutModal()" class="nav-pill-link">ABOUT US</a>
+                    <a href="#contact-us" class="nav-pill-link">CONTACT</a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- ==========================================================================
