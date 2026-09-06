@@ -247,16 +247,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     : '<span class="text-gray-400 italic">No declaration detected</span>';
 
                 tr.innerHTML = `
-                    <td class="font-mono font-bold text-[#1A365D]">${r.rule_id}</td>
-                    <td>
+                    <td class="font-mono font-bold text-[#1A365D] text-center" style="vertical-align: middle;">${r.rule_id}</td>
+                    <td style="vertical-align: middle;">
                         <div class="font-bold text-gray-800 text-xs">${r.rule_name}</div>
                         <div class="text-[11px] text-gray-500 font-mono">${r.section}</div>
                     </td>
-                    <td class="text-xs font-mono">${snippets}</td>
-                    <td>
-                        <span class="px-2.5 py-1 rounded-md text-xs font-black shadow-sm ${isPass ? 'badge-compliant border-2 border-emerald-500 bg-emerald-50 text-emerald-900' : 'badge-infraction border-2 border-rose-500 bg-rose-50 text-rose-900'}">
-                            ${isPass ? '✓ PASS' : '✕ FAIL'}
-                        </span>
+                    <td class="text-xs font-mono leading-relaxed" style="vertical-align: middle; max-width: 380px;">${snippets}</td>
+                    <td class="text-center whitespace-nowrap" style="vertical-align: middle;">
+                        <div class="inline-flex flex-col items-center justify-center px-3 py-1.5 rounded-lg text-xs font-black shadow-sm ${isPass ? 'badge-compliant' : 'badge-infraction'}">
+                            <span class="text-sm font-black leading-none mb-0.5">${isPass ? '✓' : '✕'}</span>
+                            <span class="tracking-wide">${isPass ? 'PASS' : 'FAIL'}</span>
+                        </div>
                     </td>
                 `;
                 rulesMatrixTbody.appendChild(tr);
@@ -297,5 +298,51 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show Results Panel
         resultsPanel.classList.remove('hidden');
         resultsPanel.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+
+// ==========================================================================
+// HERO BACKGROUND SLIDESHOW (5-Second Automatic Slide Transition)
+// ==========================================================================
+let heroBgCurrentIndex = 0;
+let heroBgInterval = null;
+const TOTAL_HERO_SLIDES = 5;
+
+window.updateHeroBgSlide = function(index) {
+    const track = document.getElementById('heroBgTrack');
+    const dots = document.querySelectorAll('.hero-slider-dot');
+    if (!track) return;
+
+    heroBgCurrentIndex = (index + TOTAL_HERO_SLIDES) % TOTAL_HERO_SLIDES;
+    const offset = -(heroBgCurrentIndex * (100 / TOTAL_HERO_SLIDES));
+    track.style.transform = `translateX(${offset}%)`;
+
+    dots.forEach((dot, idx) => {
+        if (idx === heroBgCurrentIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+};
+
+window.nextHeroBgSlide = function() {
+    window.updateHeroBgSlide(heroBgCurrentIndex + 1);
+};
+
+window.goToBgSlide = function(index) {
+    window.updateHeroBgSlide(index);
+    window.resetHeroBgTimer();
+};
+
+window.resetHeroBgTimer = function() {
+    if (heroBgInterval) clearInterval(heroBgInterval);
+    heroBgInterval = setInterval(window.nextHeroBgSlide, 5000);
+};
+
+// Start background slideshow when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('heroBgTrack')) {
+        window.resetHeroBgTimer();
     }
 });

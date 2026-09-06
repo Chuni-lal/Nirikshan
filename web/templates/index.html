@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/assets/Logo.png">
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css?v=3">
 </head>
 <body class="font-sans antialiased bg-white text-[#1E293B] overflow-x-hidden max-w-full">
 
@@ -106,10 +106,23 @@
     </div>
 
     <!-- ==========================================================================
-         3. HERO BANNER SECTION (Uses banner-inner.jpg background)
+         3. HERO BANNER SECTION (Sliding Background Images with 5s Interval)
          ========================================================================== -->
     <section class="hero-banner-igod border-b border-gray-300">
-        <div class="w-full max-w-4xl mx-auto text-center space-y-4 px-2">
+        <!-- Animated Background Slider Track -->
+        <div class="hero-bg-slider-container">
+            <div class="hero-bg-track" id="heroBgTrack">
+                <div class="hero-bg-slide" style="background-image: url('/assets/an-upclose-shot-of-the-apps-barcode-scanner-allowing-users-to-quickly-and-accurately-log-their-food-intake-by-simply-scanning-the-barcode-of-any-packaged-item-photo.jpg');"></div>
+                <div class="hero-bg-slide" style="background-image: url('/assets/Gemini_Generated_Image_8aanxi8aanxi8aan.png');"></div>
+                <div class="hero-bg-slide" style="background-image: url('/assets/Gemini_Generated_Image_bc1y3vbc1y3vbc1y.png');"></div>
+                <div class="hero-bg-slide" style="background-image: url('/assets/nirikshan.png');"></div>
+                <div class="hero-bg-slide" style="background-image: url('/assets/person-reading-nutritional-label-on-snack-package-in-grocery-store-free-photo.jpg');"></div>
+            </div>
+            <!-- Dark Overlay Gradient -->
+            <div class="hero-bg-overlay"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-4xl mx-auto text-center space-y-4 px-2">
             
             <!-- Central Search Capsule -->
             <div class="hero-search-capsule mx-auto">
@@ -123,9 +136,18 @@
 
             <!-- Advanced Search Sublink -->
             <div class="text-right max-w-2xl mx-auto pr-2">
-                <a href="#scanner-workbench" class="text-xs sm:text-sm font-semibold text-[#006699] hover:underline flex items-center justify-end gap-1">
+                <a href="#scanner-workbench" class="text-xs sm:text-sm font-bold text-sky-200 hover:text-white hover:underline flex items-center justify-end gap-1 drop-shadow-md">
                     <span>ⓘ Advanced Search / Package Inspection</span>
                 </a>
+            </div>
+
+            <!-- Slide Indicators / Dots -->
+            <div class="flex items-center justify-center gap-2.5 pt-3" id="heroBgDots">
+                <button type="button" class="hero-slider-dot active" onclick="goToBgSlide(0)" title="Slide 1"></button>
+                <button type="button" class="hero-slider-dot" onclick="goToBgSlide(1)" title="Slide 2"></button>
+                <button type="button" class="hero-slider-dot" onclick="goToBgSlide(2)" title="Slide 3"></button>
+                <button type="button" class="hero-slider-dot" onclick="goToBgSlide(3)" title="Slide 4"></button>
+                <button type="button" class="hero-slider-dot" onclick="goToBgSlide(4)" title="Slide 5"></button>
             </div>
 
         </div>
@@ -382,10 +404,10 @@
                                     <table class="gov-table">
                                         <thead>
                                             <tr>
-                                                <th>Rule ID</th>
-                                                <th>Statutory Clause</th>
-                                                <th>Extracted Snippet</th>
-                                                <th>Verdict</th>
+                                                <th class="w-20 text-center" style="vertical-align: middle;">Rule ID</th>
+                                                <th style="vertical-align: middle;">Statutory Clause</th>
+                                                <th style="vertical-align: middle;">Extracted Snippet</th>
+                                                <th class="w-28 text-center" style="vertical-align: middle;">Verdict</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rules-matrix-tbody">
@@ -1003,7 +1025,7 @@
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
 
     <!-- Scanner JavaScript -->
-    <script src="/static/js/scanner.js"></script>
+    <script src="/static/js/scanner.js?v=3"></script>
 
     <script>
         function toggleTheme() {

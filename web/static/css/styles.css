@@ -180,22 +180,77 @@ body.dark-mode .nirikshan-shimmer-text {
 }
 
 /* ==========================================================================
-   HERO BANNER SECTION (IGOD Style with banner-inner.jpg)
+   HERO BANNER SECTION (IGOD Style with Image Slider Background)
    ========================================================================== */
 .hero-banner-igod {
   position: relative;
-  background-image: url('/assets/banner-inner.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  min-height: 420px;
+  min-height: 520px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3.5rem 1.5rem 5.5rem 1.5rem;
-  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.22);
+  padding: 4.5rem 1.5rem 5.5rem 1.5rem;
+  overflow: hidden;
+}
+
+.hero-bg-slider-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-bg-track {
+  display: flex;
+  width: 500%; /* 5 slides */
+  height: 100%;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.hero-bg-slide {
+  width: 20%; /* 100% / 5 */
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.28) 0%, rgba(15, 23, 42, 0.42) 100%);
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+/* Slider Dots Styling */
+.hero-slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.45);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hero-slider-dot:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: scale(1.15);
+}
+
+.hero-slider-dot.active {
+  width: 30px;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
 }
 
 .hero-search-capsule {
@@ -377,6 +432,14 @@ body.font-lg { --base-font-size: 18px; }
   border: 2px solid #10B981 !important;
   font-weight: 800;
   box-shadow: 0 1px 3px rgba(16, 185, 129, 0.25);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  line-height: 1.2;
 }
 
 .badge-infraction {
@@ -385,6 +448,14 @@ body.font-lg { --base-font-size: 18px; }
   border: 2px solid #EF4444 !important;
   font-weight: 800;
   box-shadow: 0 1px 3px rgba(239, 68, 68, 0.25);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  line-height: 1.2;
 }
 
 .badge-warning {
@@ -410,11 +481,13 @@ body.font-lg { --base-font-size: 18px; }
   letter-spacing: 0.05em;
   padding: 0.9rem 1rem;
   text-align: left;
+  vertical-align: middle !important;
 }
 
 .gov-table td {
   padding: 0.9rem 1rem;
   border-bottom: 1px solid var(--nic-border);
+  vertical-align: middle !important;
 }
 
 .gov-table tbody tr:nth-child(even) {
